@@ -1,0 +1,333 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<br>8 Basics of Programming
+<br>
+<br>Licensed under the Creative Commons Attribution licence (CC-BY),
+<br>either version 4.0 or at your option, any later version. See:
+<br>https://creativecommons.org/licenses/by/4.0/
+<br>
+<br>Author:Usmar A. Padow (amigojapan), contact: usmpadow@gmail.com
+<br>
+<br>note:this document is aimed at those who ask "where should I start programming?"
+<br>
+<br>0. Sequentiality
+<br>1. Variables
+<br>2. Statements
+<br>3. Conditionals/blocks 
+<br>4. Functions/Types 
+<br>5. Input/output
+<br>6. Loops 
+<br>7. Arrays/lists 
+<br>
+<br>before we start you can use  <a href="https://www.programiz.com/python-programming/online-compiler/" target="_blank">this link to run python code</a>
+<br>
+<br>0.	Sequentiality/Following instructions in order
+<br>the first thing we need to learn in order to become a programmer is 
+that instructions always follow a regular order, usually from top
+ to down (and sometimes from left to right)
+for example, if I write:
+<pre><code>
+BrushMyTeeth()
+CombMyHair()
+GoToWork()
+</code></pre>
+it will never got or work before I brush my teeth and comb my hair...
+<pre><code>
+BrushMyTeeth()
+GoToWork()
+CombMyHair()
+</code></pre>
+well, the answer is that I would first brush my teeth, but I would get 
+to work unkempt, which would cause trouble, that is why the order of 
+the instructions in a program is so important… also because "computers 
+are stupid”(recommend
+ watching <a href="https://www.youtube.com/watch?v=EKWGGDXe5MA" target="_blank">this video</a>
+ ) which is another thing to keep in mind, with the
+  previous script I just wrote, the computer will not intelligently know
+ i should comb my hair before going to work.. computers are just
+   not capable of such decision making at this level of programming.
+If you make a large program, and shuffle its instructions around, the 
+program will surely not do what it was originally intended to do.
+
+<br>
+<br>1.Variables
+<br>a variable is a place in the computer memory where some kind of 
+value sometimes a string(some letters),sometimes a number is stored.
+ like the value 5 or the string “hello”.   a variable can have a simple 
+name like just the letter x or any combination of letters like
+  last_name or social_security_number, but not spaces, last name is 
+not a valid variable name.
+if we have a variable called social_security_number we could assign it 
+the value 123458789 as a sample social security number.
+variables as their name implied can vary, which seems to be different to
+ the mathematical view on variables, in math if you
+ say x=5 then x is always equal to 5,  but in programming we can say 
+x=3 and then x=5 and the value would first be set to 3 and
+  then change to 5.
+in the case of a string, the value between the double quotes will be 
+assigned to the variable, for example if we had last_name we could
+ assign “Einstein” to it easily as follows: last_name= “Einstein”. 
+<br>
+<br>2.	Statements 
+<br>this may be the most difficult part to explain of programming,
+almost everything you see in a computer program is a statement, 
+statements, but can also appear as
+ keywords such as while().
+Lets talk about assignment statements.
+for example, lets take the following program
+<pre><code>
+x=3
+x=5
+x=x+1
+</code></pre>
+what will be the result of such a program…
+well, the first statement, x=3 will set x to 3, then the next statement
+ x=5 will (maybe counter-intuitively to some)
+ set x to 5, then the final statement  x=x+1 we need to break down into
+ its  parts.
+we have the x on the left of the equal sign called an “lvalue” which is the same as the 
+first x=3, where the x is what stores the value, then we have x+1,
+ the value of x at this point of the program is 5 because it comes after
+ x=5 so when we do x+1 it is the same as doing 5+1, and then
+  finally we assign that to the lvalue, so at the end of the program, x 
+will contain 6 which is 5+1.
+other kinds of statements we will look at later in this text are things 
+like function calls, return statements, conditional statements
+ and boolean statements.
+<br>
+<br>3. Conditionals/block of code 
+<br>a conditional statement is a statement which give usually two different 
+flow controls depending on wether the statement it is evaluation
+is true or false, for example:
+In order to explain conditional statements I am also forced to explain what
+blocks of code are.
+firstly, here is an example in python:
+<pre><code>
+x=5
+if x>3:
+  print("x is more than 3")
+  print("I wish x was less than 3")
+if x<3:
+  print("this line wont get printed")
+x=2
+if x<3:
+  print("x is not more than 3")
+</code></pre>
+<br>
+lets go thru that program line by line.
+First it assigns 5 to x, then it checks if  x is more than 3, since it is,
+it will go into the following "block of code" which starts when we add a tab
+or any number of spaces before entering our print statement(print is used in
+computers now because computers form the old age used to print their results
+on paper instead of a screen), as you can see, the following two lines of
+code both are "indented", which means they are a certain ammount to the right.
+this means both lines will be executed, and since x>3 is true, the print
+statements will be executed and the following text will display on the screen:
+<br>
+<pre><code>
+x is more than 3
+I wish x was less than 3
+</code></pre>
+<br>
+then the following line is executed if x<3:, since x is still 5, it means
+the statement x<3 is false, which means it won't execute the folloing print
+statement, so that line wont be printed to the screen.
+finally we set x to 2. and next the if statement checks wether x<3 is true,
+which it is, printing out the text in that print statement.
+the complete output of this program is:
+<br>
+<pre><code>
+x is more than 3
+I with x was less than 3
+x is not more than 3 
+</code></pre>
+<br>
+<br>4. Procedures/functions 
+<br>now functions need to be broken down into 2 separate parts, the easy
+part which is a function call and the hard part which is a function declaration.
+in the beginning of this paper I used three function calls to say what I was
+telling the computer to do:
+<pre><code>
+BrushMyTeeth()
+CombMyHair()
+GoToWork()
+</code></pre>
+<br>
+take the following program
+<pre><code>
+def calculate_tax(tax_type, amount):
+  if tax_type=="luxury":
+    return amount * 0.01
+  else:
+    return amount * 0.08
+
+purse_tax=calculate_tax("non-luxury", 100)
+restaurant_tax=calculate_tax("luxury", 100)
+print("purse_tax is " + str(purse_tax))
+print("restaurant_tax is " + str(restaurant_tax))
+</code></pre>
+<br>
+function calls help us so we don't have to write the same
+code many times, for example, in this program we defined the way to
+calcualte tax only once, but we did two function calls.
+the to calculate_tax function call, saving us from typing the same
+thing over and over, we could do 100 function calls to the same 
+function and it would not inscrease the size of the program by much..
+<br>
+<br>Now I will explain how a function is defined.
+first the keyword def is used, followed by the function name, function names
+follow the same rule as variable names, in this case our function name is
+calculate_tax.then an open parenthesis (then the "parameters", which
+are the things that change from function call
+to function call. they come in the form of variable names, in this case our
+parameters are tax_type and ammount.
+then comes the function body, which in python is just a block of indented stuff
+as you can see this function body has the capability to give an 8 pecent tax
+for a non luxury item and a 10 percent tax to a luxury item. 
+in our function calls we send the parameters to the function, and they get stored
+as variables of the name of the parameters.
+finally there is the return statement. which tells the program "send this back
+to the function call as the result". (also note that return terminates the flow of
+the fucntion, no mroe operations occur ater return, and the flow of the
+program goes back to the function call)
+in this program, after return is called,  it sets the lvalues of purse_tax and
+restaurant_tax.
+finally this program prints out the values. values are numbers so they need to
+be converted to strings before they can be printed using the print() statement.
+this is accomplished by surrounding the values with str().
+
+
+<br>
+<br>5.Input/output
+<br>
+<br>now, here is the most simple program every programmer starts out with
+<pre><code>
+print “hello world”
+</code></pre>
+<br>
+this is a simple example of "output"
+<br>now lets try some input:
+<pre><code>
+print("enter your name:")
+name=input()
+print("enter your last name:")
+lname=input()
+print("welcome to our program " + name + " " + lname + "!\n")
+</code></pre>
+the output in my cause after entering my name is as follows:
+<br>
+<pre><code>
+enter your name:
+Usmar
+enter your last name:
+Padow
+welcome to our program Usmar Padow!
+</code></pre>
+<br>
+<br>6. Loops 
+<br>
+while Loops
+<br>
+<br>
+a while loop is a loop that executed while a condition is true, and ends when 
+the condition is false.
+now lets get some example code:
+<pre><code>
+cont=True
+while cont==True:
+    print("continue? 1)Yes 2)No:")
+    user_input=input()
+    if user_input=="2":
+      cont=False
+</code></pre>
+<br>
+here is some sample output for this code:
+<br>
+<pre><code>
+continue? 1)Yes 2)No:
+1
+continue? 1)Yes 2)No:
+1
+continue? 1)Yes 2)No:
+2
+</code></pre>
+<br>
+<br>
+for loops.
+for loops are one of the most common kind of loops in programming.
+here is some sample code:
+<pre><code>
+sum = 0
+for counter in range(1,10):
+    print ("counter is " + str(counter) + " and sum is " + str(sum))
+    sum += counter
+</code></pre>    
+<br>
+<br>the output of all of these programs is:
+<br>
+<pre><code>
+counter is 1 and sum is 0
+counter is 2 and sum is 1
+counter is 3 and sum is 3
+counter is 4 and sum is 6
+counter is 5 and sum is 10
+counter is 6 and sum is 15
+counter is 7 and sum is 21
+counter is 8 and sum is 28
+counter is 9 and sum is 36
+</code></pre>
+the for loop looks at the range given in range 1,10, it loops around setting
+the counter variable form 1 to 9(warning:even tho your range says 10 it will
+end at one less than the final number)
+<br>
+<br>7. lists
+a list is a data structure to hold data in order, I think this code will speak for itself(by the way, anything after a # sign is a comment, and won't do anything in the program):
+<pre><code>
+fruits=["banana","apple","peach","pear"] # create a list
+print(fruits[0]) # print first element of list
+print(fruits[3]) # print second element
+print("now reprinting all fruits")
+for fruit in fruits: # loops thru the fruits list and assigns each values to the fruit variable
+    print(fruit) # prints current "iteration" of the fruit
+print("now reprinting all fruits in reverse")
+fruits.reverse() # reverses the list
+for fruit in fruits:
+    print(fruit)
+print("now printing fruits in alphabetical order")
+fruits.sort() # sorts the list in alphabetical order
+for fruit in fruits:
+    print(fruit)
+</code></pre>
+<br>
+the output for this code will look like this:
+<br>
+<pre><code>
+banana
+pear
+now reprinting all fruits
+banana
+apple
+peach
+pear
+now reprinting all fruits in reverse
+pear
+peach
+apple
+banana
+now printing fruits in alphabetical order
+apple
+banana
+peach
+pear
+</code></pre>
+
+one thing I want to point out is that fruits[0] points to "banana" cause
+lists in python are "zero indexed" which means the list starts at 0, not
+at 1.
+
+ok, I think if you grasped this you have grasped the very basics of python,
+you should now be able to go on to taking the tutorials at the python pages
+or other sites. <a href=https://docs.python.org/3/tutorial/>here</a> is the link to the python official tutorial. 
+<br>
+<br>This document was originally written in 2017 for python2 and C. Modified in 2022 to be python3 only.
+</body></html>
