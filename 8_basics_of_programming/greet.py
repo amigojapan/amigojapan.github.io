@@ -1,0 +1,5 @@
+print("enter your name:")
+name=input()
+print("enter your last name:")
+lname=input()
+print("welcome to our program " + name + " " + lname + "!\n")
