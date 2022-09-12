@@ -130,7 +130,6 @@ statements will be executed and the following text will display on the screen:
 <pre><code>
   x is more than 3
   I wish x was less than 3
-  x is less than 3
 </code></pre>
 <br>
 Then the following line is executed if x<3:, since x is still 5, it means
@@ -161,7 +160,7 @@ Take the following program
 <pre><code>
 def calculate_tax(tax_type, ammount):
   if tax_type=="luxury":
-    return ammount * 0.01
+    return ammount * 0.10
   else:
     return ammount * 0.08
 
@@ -169,6 +168,13 @@ purse_tax=calculate_tax("non-luxury", 100)
 restaurant_tax=calculate_tax("luxury", 100)
 print("purse_tax is " + str(purse_tax))
 print("restaurant_tax is " + str(restaurant_tax))
+</code></pre>
+<br>
+The output of this program should be this:
+<br>
+<pre><code>
+  purse_tax is 8.0
+  restaurant_tax is 10.0
 </code></pre>
 <br>
 Function calls help us so we don't have to write the same
