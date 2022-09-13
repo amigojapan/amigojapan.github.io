@@ -1,5 +1,8 @@
 <html>
 <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script type="text/javascript">
 	function show_prompt() {
         alert("this program does not provide any guarantree, always consult your doctor if in doubt");
@@ -11,27 +14,27 @@
 		//Between 140-159	or Between 90-99	Stage 1 hypertension
 		//160 or higher	or 100 or higher	Stage 2 hypertension
 		var output="<h1>";
-		output=output+"Diagnosis:";
+		output=output+"Diagnosis:<BR>";
 	    if(top>=140||bottom>=90) {
-			output=output+"Stage 2 hypertension(high blood pressure), Maintain or adopt a healthy lifestyle. Talk to your doctor about taking more than one medication.";
+			output=output+"Stage 2 hypertension(high blood pressure), <BR>Maintain or adopt a healthy lifestyle. <BR>Talk to your doctor about taking more<BR> than one medication.<BR>";
 		}else if((top>=130)||bottom>=80) {
-			output=output+"Stage 1 hypertension(high blood pressure), Maintain or adopt a healthy lifestyle. If your blood pressure goal isn't reached in about a month, talk to your doctor about taking one or more medications.";
+			output=output+"Stage 1 hypertension(high blood pressure),<BR> Maintain or adopt a healthy lifestyle. <BR>If your blood pressure goal isn't<BR> reached in about a month, <BR>talk to your doctor about taking<BR> one or more medications.<BR>";
 		}else if((top>=120&&top<=129)&&bottom<80) {
-			output=output+"Prehypertension(slightly higher than normal blood pressure), Maintain or adopt a healthy lifestyle.";
+			output=output+"Prehypertension(slightly higher than normal blood pressure),<BR> Maintain or adopt a healthy lifestyle.<BR>";
         }
         if(top<120&&bottom<80) {
-			output=output+"normal blood pressure, Maintain or adopt a healthy lifestyle.";
+			output=output+"normal blood pressure, <BR>Maintain or adopt a healthy lifestyle.<BR>";
 		}
         if(top<=90||bottom<=60) {
-		    output="<h1>Diagnosis:"+"low blood pressure, see a doctor";
+		    output="<h1>Diagnosis:<BR>"+"low blood pressure, see a doctor<BR>";
         }
 
 		output=output+"</h1>";
-		output=output+"<BR>Values may be different for children, ask your doctor. Note: These recommendations address high blood pressure as a single health condition. If you also have heart disease, diabetes, chronic kidney disease or certain other conditions, you may need to treat your blood pressure more aggressively.";
-		output=output+"<BR>sources from the mayo clinic <a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>high blood pressure</a> <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>low blood pressure</a>";
-		output=output+"<BR>Use this information at your own risk,  amigojapan does not take responsibiliry for mistaken diagnosis, but I think it is correct";
+		output=output+"<BR>Values may be different for children, <BR>ask your doctor. <BR>Note: These recommendations address high blood<BR> pressure as a single health condition.<BR> If you also have heart disease, diabetes,<BR> chronic kidney disease or certain other<BR> conditions, you may need to treat<BR> your blood pressure more aggressively.<BR>";
+		output=output+"<BR>sources from the mayo clinic<BR> <a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>high blood pressure</a> <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>low blood pressure</a><BR>";
+		output=output+"<BR>Use this information at your own risk,<BR>  amigojapan does not take responsibiliry for<BR> mistaken diagnosis, but I think it is<BR> correct<BR>";
         if(isNaN(top)||isNaN(bottom)){	
-			output="input error, enter numbers only" ;
+			output="Input error,<BR> enter numbers only" ;
 		}
         document.getElementById('output1').innerHTML=output;
 	}
