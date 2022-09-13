@@ -11,17 +11,18 @@
 		//160 or higher	or 100 or higher	Stage 2 hypertension
 		var output="<h1>";
 		output=output+"Diagnosis:";
-		if(top<=90||bottom<=60) {
-			output=output+"low blood pressure, see a doctor";
-		}else if(top>=160||bottom>=100) {
+	    if(top>=140||bottom>=90) {
 			output=output+"Stage 2 hypertension(high blood pressure), Maintain or adopt a healthy lifestyle. Talk to your doctor about taking more than one medication.";
-		}else if(top>=140||bottom>=90) {
+		}else if(top>=139||bottom>=89) {
 			output=output+"Stage 1 hypertension(high blood pressure), Maintain or adopt a healthy lifestyle. If your blood pressure goal isn't reached in about a month, talk to your doctor about taking one or more medications.";
-		}else if(top>=120||bottom>=80) {
+		}else if(top>=129||bottom>=80) {
 			output=output+"Prehypertension(slightly higher than normal blood pressure)予備軍, Maintain or adopt a healthy lifestyle.";
 		}else if(top<120&&bottom<80) {
 			output=output+"normal blood pressure, Maintain or adopt a healthy lifestyle.";
-		}
+		}else if(top<=90||bottom<=60) {
+		    output=output+"low blood pressure, see a doctor";
+        }
+
 		output=output+"</h1>";
 		output=output+"<BR>Values may be different for children, ask your doctor. Note: These recommendations address high blood pressure as a single health condition. If you also have heart disease, diabetes, chronic kidney disease or certain other conditions, you may need to treat your blood pressure more aggressively.";
 		output=output+"<BR>sources from the mayo clinic <a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>high blood pressure</a> <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>low blood pressure</a>";
