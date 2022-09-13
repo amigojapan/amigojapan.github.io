@@ -3,8 +3,8 @@
 <script type="text/javascript">
 	function show_prompt() {
         alert("this program does not provide any guarantree, always consult your doctor if in doubt");
-		var top=prompt("Enter top number(systolic reading)","");
-		var bottom=prompt("Enter bottom number(diastolic reading)","");
+		var top=parseInt(prompt("Enter top number(systolic reading)",""));
+		var bottom=parseInt(prompt("Enter bottom number(diastolic reading)",""));
 		//90 or less on the top number in a blood pressure reading or 60 mm Hg or less  (the bottom number) is generally considered low blood pressure.
 		//Below 120	and Below 80	Normal blood pressure
 		//Between 120-139	or Between 80-89	Prehypertension
@@ -30,7 +30,10 @@
 		output=output+"<BR>Values may be different for children, ask your doctor. Note: These recommendations address high blood pressure as a single health condition. If you also have heart disease, diabetes, chronic kidney disease or certain other conditions, you may need to treat your blood pressure more aggressively.";
 		output=output+"<BR>sources from the mayo clinic <a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>high blood pressure</a> <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>low blood pressure</a>";
 		output=output+"<BR>Use this information at your own risk,  amigojapan does not take responsibiliry for mistaken diagnosis, but I think it is correct";
-		document.getElementById('output1').innerHTML=output;
+        if(isNaN(top)||isNaN(bottom)){	
+			output="input error, enter numbers only" ;
+		}
+        document.getElementById('output1').innerHTML=output;
 	}
 </script>
 </head>
