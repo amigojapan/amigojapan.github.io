@@ -1,0 +1,37 @@
+<html>
+<head>
+<script type="text/javascript">
+	function show_prompt() {
+        alert("このプログラムは保証しません。医者に診断しに行ってください。");
+		var top=prompt("最高血圧値（半画数）","");
+		var bottom=prompt("最低血圧値（半画数）","");
+		//90 or less on the top number in a blood pressure reading or 60 mm Hg or less  (the bottom number) is generally considered low blood pressure.
+		//Below 120	and Below 80	Normal blood pressure
+		//Between 120-139	or Between 80-89	Prehypertension
+		//Between 140-159	or Between 90-99	Stage 1 hypertension
+		//160 or higher	or 100 or higher	Stage 2 hypertension
+		var output="<h1>";
+		output=output+"診断：";
+	    if(top>=140||bottom>=90) {
+			output=output+"ステージ２高血圧, 直ちに医者に行ってください。ダイエットの改善と適切な運動と薬の服用一種類以上が必要です。";
+		}else if(top>=139||bottom>=89) {
+			output=output+"ステージ１高血圧。 ダイエットの改善と適切な運動Mをして、一ヶ月で改善見られない場合は医者に行って、薬の服用の相談してください。";
+		}else if(top>=129||bottom>=80) {
+			output=output+"高血圧予備軍, ダイエットと運動の改善もしくは続けてください。";
+		}else if(top<120&&bottom<80) {
+			output=output+"血圧は標準値です。ダイエットと運動を続けてください。";
+		}else if(top<=90||bottom<=60) {
+		    output=output+"低血圧です！直ちに医者に行ってください。";
+        }
+
+		output=output+"</h1>";
+		output=output+"<BR>子供は数値が違う場合があります。 医者に相談してください。 注意：この診断は高血圧だけのためです。もし心臓病、糖尿病、腎臓病、その他の病状もある場合はもっと強烈的に高血圧の治療をしなければいけない場合もあります。";
+		output=output+"<BR>このプログラムの数値とデータは米国のマヨクリニックから用意されました。<a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>こちら</a>と <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>こちら</a>";
+		output=output+"<BR>この診断だけを信用しないでください。amigojapanが間違った診断が出ても責任問いません。";
+		document.getElementById('output1').innerHTML=output;
+	}
+</script>
+</head>
+<div id="output1">No output</div>
+<body onload="show_prompt()";></body>
+</html>
