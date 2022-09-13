@@ -20,8 +20,9 @@
 			output=output+"Prehypertension(slightly higher than normal blood pressure)予備軍, Maintain or adopt a healthy lifestyle.";
 		}else if(top<120&&bottom<80) {
 			output=output+"normal blood pressure, Maintain or adopt a healthy lifestyle.";
-		}else if(top<=90||bottom<=60) {
-		    output=output+"low blood pressure, see a doctor";
+		}
+        if(top<=90||bottom<=60) {
+		    output="<h1>Diagnosis:"+"low blood pressure, see a doctor";
         }
 
 		output=output+"</h1>";
