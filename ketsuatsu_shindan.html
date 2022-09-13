@@ -20,8 +20,9 @@
 			output=output+"高血圧予備軍, ダイエットと運動の改善もしくは続けてください。";
 		}else if(top<120&&bottom<80) {
 			output=output+"血圧は標準値です。ダイエットと運動を続けてください。";
-		}else if(top<=90||bottom<=60) {
-		    output=output+"低血圧です！直ちに医者に行ってください。";
+		}
+		if(top<=90||bottom<=60) {
+		    output="診断："+"低血圧です！直ちに医者に行ってください。";
         }
 
 		output=output+"</h1>";
