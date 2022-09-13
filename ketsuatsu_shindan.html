@@ -16,9 +16,10 @@
 			output=output+"ステージ２高血圧, 直ちに医者に行ってください。ダイエットの改善と適切な運動と薬の服用一種類以上が必要です。";
 		}else if(top>=139||bottom>=89) {
 			output=output+"ステージ１高血圧。 ダイエットの改善と適切な運動をして、一ヶ月で改善見られない場合は医者に行って、薬の服用の相談してください。";
-		}else if(top>=129||bottom>=80) {
+		}else if((top>=120||top>=129)&&bottom<80) {
 			output=output+"高血圧予備軍, ダイエットと運動の改善もしくは続けてください。";
-		}else if(top<120&&bottom<80) {
+		}
+		if(top<120&&bottom<80) {
 			output=output+"血圧は標準値です。ダイエットと運動を続けてください。";
 		}
 		if(top<=90||bottom<=60) {
