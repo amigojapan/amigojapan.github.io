@@ -1,8 +1,8 @@
 def calculate_tax(tax_type, ammount):
   if tax_type=="luxury":
-    return ammount * 0.10
+      return ammount * 0.10
   else:
-    return ammount * 0.08
+      return ammount * 0.08
 
 purse_tax=calculate_tax("non-luxury", 100)
 restaurant_tax=calculate_tax("luxury", 100)
