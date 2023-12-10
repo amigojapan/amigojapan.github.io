@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 	function show_prompt() {
-        alert("このプログラムは保証しません。医者に診断しに行ってください。");
+        alert("このプログラムは保証しません。医者に相談してください。");
 		var top=parseInt(prompt("最高血圧値（半画数）",""));
 		var bottom=parseInt(prompt("最低血圧値（半画数）",""));
 		//90 or less on the top number in a blood pressure reading or 60 mm Hg or less  (the bottom number) is generally considered low blood pressure.
@@ -18,7 +18,7 @@
 	    if(top>=140||bottom>=90) {
 			output=output+"ステージ２高血圧。 <BR>直ちに医者に行ってください。<BR>ダイエットの改善と適切な運動と薬の服用一種類以上が必要です。<BR>";
 		}else if((top>=130)||bottom>=80) {
-			output=output+"ステージ１高血圧。 <BR>ダイエットの改善と適切な運動をして、<BR>一ヶ月で改善見られない場合は医者に行って、<BR>薬の服用の相談してください。<BR>";
+			output=output+"ステージ１高血圧。 <BR>ダイエットの改善と適切な運動をして、<BR>医者さんに行って、薬の服用の相談してください。<BR>";
 		}else if((top>=120&&top<=129)&&bottom<80) {
 			output=output+"高血圧予備軍。<BR> ダイエットと運動の改善もしくは続けてください。<BR>";
 		}

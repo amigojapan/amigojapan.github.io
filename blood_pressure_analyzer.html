@@ -8,19 +8,19 @@
         alert("this program does not provide any guarantee, always consult your doctor if in doubt");
 		var top=parseInt(prompt("Enter top number(systolic reading)",""));
 		var bottom=parseInt(prompt("Enter bottom number(diastolic reading)",""));
-		//90 or less on the top number in a blood pressure reading or 60 mm Hg or less  (the bottom number) is generally considered low blood pressure.
-		//Below 120	and Below 80	Normal blood pressure
-		//Between 120-139	or Between 80-89	Prehypertension
-		//Between 140-159	or Between 90-99	Stage 1 hypertension
-		//160 or higher	or 100 or higher	Stage 2 hypertension
-		var output="<h1>";
+        //top                       bottom          diagnosis
+        //Below 120 	    and 	Below 80 	    Normal blood pressure 	    Maintain or adopt a healthy lifestyle.
+        //120-129 	        and 	Below 80 	    Elevated blood pressure 	Maintain or adopt a healthy lifestyle.
+        //130-139 	        or 	    80-89 	        Stage 1 high blood pressure (hypertension) 	Maintain or adopt a healthy lifestyle. Talk to your provider about taking one or more medications.
+        //140 or higher 	or 	    90 or higher 	Stage 2 high blood pressure (hypertension) 	Maintain or adopt a healthy lifestyle. Talk to your provider about taking more than one medication.
+        var output="<h1>";
 		output=output+"Diagnosis:<BR>";
 	    if(top>=140||bottom>=90) {
-			output=output+"Stage 2 hypertension(high blood pressure), <BR>Maintain or adopt a healthy lifestyle. <BR>Talk to your doctor about taking more<BR> than one medication.<BR>";
+			output=output+"Stage 2 hypertension(high blood pressure), <BR>Maintain or adopt a healthy lifestyle. <BR>Talk to your provider about <BR>taking more than one medication.<BR>";
 		}else if((top>=130)||bottom>=80) {
-			output=output+"Stage 1 hypertension(high blood pressure),<BR> Maintain or adopt a healthy lifestyle. <BR>If your blood pressure goal isn't<BR> reached in about a month, <BR>talk to your doctor about taking<BR> one or more medications.<BR>";
+			output=output+"Stage 1 hypertension(high blood pressure),<BR> Maintain or adopt a healthy lifestyle. <BR> Talk to your provider about <BR>taking one or more medications.<BR>";
 		}else if((top>=120&&top<=129)&&bottom<80) {
-			output=output+"Prehypertension(slightly higher than normal blood pressure),<BR> Maintain or adopt a healthy lifestyle.<BR>";
+			output=output+"Elevated blood pressure,<BR> Maintain or adopt a healthy lifestyle.<BR>";
         }
         if(top<120&&bottom<80) {
 			output=output+"normal blood pressure, <BR>Maintain or adopt a healthy lifestyle.<BR>";
