@@ -198,7 +198,7 @@
   Lets go thru that program line by line.
   First it assigns 5 to x, then it checks if  x is more than 3, since it is,
   it will go into the following "block of code" which starts when we add a tab
-  or any number of spaces before entering our print statement(print is used in
+  or four of spaces before entering our print statement(print is used in
   computers now because computers form the old age used to print their results
   on paper instead of a screen), as you can see, the following two lines of
   code both are "indented", which means they are a certain ammount to the right.
@@ -236,17 +236,18 @@
   <br>
   Take the following program:
   
-  <div class="demo-highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_tax</span><span class="p">(</span><span class="n">tax_type</span><span class="p">,</span> <span class="n">ammount</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">tax_type</span><span class="o">==</span><span class="s2">"luxury"</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ammount</span> <span class="o">*</span> <span class="mf">0.10</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">ammount</span> <span class="o">*</span> <span class="mf">0.08</span>
-  
-  <span class="n">purse_tax</span><span class="o">=</span><span class="n">calculate_tax</span><span class="p">(</span><span class="s2">"non-luxury"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-  <span class="n">restaurant_tax</span><span class="o">=</span><span class="n">calculate_tax</span><span class="p">(</span><span class="s2">"luxury"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"purse_tax is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">purse_tax</span><span class="p">))</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"restaurant_tax is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">restaurant_tax</span><span class="p">))</span>
-  </pre></div>
+  <div class="demo-highlight">
+  <BR><span></span><span class="k">def</span> <span class="nf">calculate_tax</span><span class="p">(</span><span class="n">tax_type</span><span class="p">,</span> <span class="n">ammount</span><span class="p">):</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> <span class="n">tax_type</span><span class="o">==</span><span class="s2">"luxury"</span><span class="p">:</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">return</span> <span class="n">ammount</span> <span class="o">*</span> <span class="mf">0.10</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">else</span><span class="p">:</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">return</span> <span class="n">ammount</span> <span class="o">*</span> <span class="mf">0.08</span>
+  <BR>
+  <BR><span class="n">purse_tax</span><span class="o">=</span><span class="n">calculate_tax</span><span class="p">(</span><span class="s2">"non-luxury"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+  <BR><span class="n">restaurant_tax</span><span class="o">=</span><span class="n">calculate_tax</span><span class="p">(</span><span class="s2">"luxury"</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+  <BR><span class="nb">print</span><span class="p">(</span><span class="s2">"purse_tax is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">purse_tax</span><span class="p">))</span>
+  <BR><span class="nb">print</span><span class="p">(</span><span class="s2">"restaurant_tax is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">restaurant_tax</span><span class="p">))</span>
+  </div>
   <style id="css-style">pre { line-height: 125%; }
   td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
   span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
