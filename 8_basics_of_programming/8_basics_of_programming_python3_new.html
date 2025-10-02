@@ -354,7 +354,7 @@
   as variables of the name of the parameters.
   Finally there is the return statement. Which tells the program "send this back
   to the function call as the result". (Also note that return terminates the flow of
-  the fucntion, no mroe operations occur ater return, and the flow of the
+  the fucntion, no mroe operations occur after return, and the flow of the
   program goes back to the function call)
   in this program, after return is called,  it sets the lvalues of purse_tax and
   restaurant_tax.
@@ -451,12 +451,13 @@
   This is a simple example of "output"
   <br>Now lets try some input:
   <br>
-  <div class="demo-highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"enter your name:"</span><span class="p">)</span>
-  <span class="n">name</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"enter your last name:"</span><span class="p">)</span>
-  <span class="n">lname</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"welcome to our program "</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">lname</span> <span class="o">+</span> <span class="s2">"!</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
-  </pre></div>
+<div class="demo-highlight">
+<BR><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"enter your name:"</span><span class="p">)</span>
+<BR><span class="n">name</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="s2">"enter your last name:"</span><span class="p">)</span>
+<BR><span class="n">lname</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="s2">"welcome to our program "</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">" "</span> <span class="o">+</span> <span class="n">lname</span> <span class="o">+</span> <span class="s2">"!</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</div>
   <style id="css-style">pre { line-height: 125%; }
     td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
     span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -554,13 +555,14 @@
   the condition is false.
   Now let's get some example code:
   <br>
-  <div class="demo-highlight"><pre><span></span><span class="n">cont</span><span class="o">=</span><span class="kc">True</span>
-  <span class="k">while</span> <span class="n">cont</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">"continue? 1)Yes 2)No:"</span><span class="p">)</span>
-      <span class="n">user_input</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
-      <span class="k">if</span> <span class="n">user_input</span><span class="o">==</span><span class="s2">"2"</span><span class="p">:</span>
-          <span class="n">cont</span><span class="o">=</span><span class="kc">False</span>
-  </pre></div>
+<div class="demo-highlight">
+<BR><span></span><span class="n">cont</span><span class="o">=</span><span class="kc">True</span>
+<BR><span class="k">while</span> <span class="n">cont</span><span class="o">==</span><span class="kc">True</span><span class="p">:</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">print</span><span class="p">(</span><span class="s2">"continue? 1)Yes 2)No:"</span><span class="p">)</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">user_input</span><span class="o">=</span><span class="nb">input</span><span class="p">()</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> <span class="n">user_input</span><span class="o">==</span><span class="s2">"2"</span><span class="p">:</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">cont</span><span class="o">=</span><span class="kc">False</span>
+</div>
   <style id="css-style">pre { line-height: 125%; }
     td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
     span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -655,11 +657,12 @@
   for loops are one of the most common kind of loops in programming.
   Here is some sample code:
   <br>
-  <div class="demo-highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
-      <span class="nb">sum</span> <span class="o">+=</span> <span class="n">counter</span>
-      <span class="nb">print</span> <span class="p">(</span><span class="s2">"counter is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" and sum is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">))</span>
-  </pre></div>
+  <div class="demo-highlight">
+  <BR><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+  <BR><span class="k">for</span> <span class="n">counter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">sum</span> <span class="o">+=</span> <span class="n">counter</span>
+  <BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">print</span> <span class="p">(</span><span class="s2">"counter is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" and sum is "</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">))</span>
+  </div>
   <style id="css-style">pre { line-height: 125%; }
     td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
     span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -757,21 +760,22 @@
   Examine the comments on each line which has one to undertsand what
   the program does.
   <br>
-  <div class="demo-highlight"><pre><span></span><span class="n">fruits</span><span class="o">=</span><span class="p">[</span><span class="s2">"banana"</span><span class="p">,</span><span class="s2">"apple"</span><span class="p">,</span><span class="s2">"peach"</span><span class="p">,</span><span class="s2">"pear"</span><span class="p">]</span> <span class="c1"># create a list</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># print first element of list</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># print last element</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"now reprinting all fruits"</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span> <span class="c1"># loops thru the fruits list and assigns each values to the fruit variable</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span> <span class="c1"># prints current "iteration" of the fruit</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"now reprinting all fruits in reverse"</span><span class="p">)</span>
-  <span class="n">fruits</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># reverses the list</span>
-  <span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"now printing fruits in alphabetical order"</span><span class="p">)</span>
-  <span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># sorts the list in alphabetical order</span>
-  <span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
-  </pre></div>
+<div class="demo-highlight">
+<BR><span></span><span class="n">fruits</span><span class="o">=</span><span class="p">[</span><span class="s2">"banana"</span><span class="p">,</span><span class="s2">"apple"</span><span class="p">,</span><span class="s2">"peach"</span><span class="p">,</span><span class="s2">"pear"</span><span class="p">]</span> <span class="c1"># create a list</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># print first element of list</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="n">fruits</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1"># print last element</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="s2">"now reprinting all fruits"</span><span class="p">)</span>
+<BR><span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span> <span class="c1"># loops thru the fruits list and assigns each values to the fruit variable</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span> <span class="c1"># prints current "iteration" of the fruit</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="s2">"now reprinting all fruits in reverse"</span><span class="p">)</span>
+<BR><span class="n">fruits</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># reverses the list</span>
+<BR><span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+<BR><span class="nb">print</span><span class="p">(</span><span class="s2">"now printing fruits in alphabetical order"</span><span class="p">)</span>
+<BR><span class="n">fruits</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span> <span class="c1"># sorts the list in alphabetical order</span>
+<BR><span class="k">for</span> <span class="n">fruit</span> <span class="ow">in</span> <span class="n">fruits</span><span class="p">:</span>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</div>
   <style id="css-style">pre { line-height: 125%; }
     td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
     span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
