@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A family photo album with AI creations, in English, Japanese, and Spanish.">
+  <meta name="color-scheme" content="light">
+  <title>AI photo album</title>
+  <style>
+    :root { --paper:#f7f5ef; --ink:#263e47; --muted:#606e70; --line:#d8ddd8; --accent:#315d63; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif; line-height:1.6; }
+    body.viewer-open { overflow:hidden; }
+    a { color:inherit; }
+    button, select { font:inherit; }
+    button, a, select { -webkit-tap-highlight-color:transparent; }
+    :focus-visible { outline:3px solid #b76035; outline-offset:5px; }
+    .page { width:min(1160px, calc(100% - 64px)); margin:0 auto; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:24px 0; border-bottom:1px solid var(--line); }
+    .album-mark { font:italic 24px Georgia,serif; }
+    .language-picker { display:flex; align-items:center; gap:12px; font-size:14px; }
+    select { max-width:180px; padding:9px 32px 9px 12px; border:1px solid #a9b6b2; border-radius:6px; background:#fffef9; color:var(--ink); }
+    header { padding:58px 0 42px; }
+    .eyebrow { color:var(--accent); font-size:12px; font-weight:650; letter-spacing:.16em; margin:0 0 16px; }
+    h1 { font-family:Georgia,"Yu Mincho",serif; font-weight:400; font-size:clamp(38px,6vw,68px); line-height:1.15; letter-spacing:-.03em; margin:0 0 20px; }
+    .intro { font-size:21px; margin:0 0 12px; }
+    .hint { color:var(--muted); font-size:14px; max-width:680px; margin:0; }
+    .album-info { border-top:1px solid var(--line); padding:18px 0; color:var(--muted); font-size:13px; }
+    .album-section { border-top:1px solid var(--line); padding:27px 0 40px; }
+    .section-heading { display:flex; align-items:baseline; gap:16px; margin-bottom:22px; }
+    .section-number { color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
+    h2 { font-size:20px; font-weight:500; line-height:1.5; margin:0; }
+    .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:24px; }
+    .photo { display:block; text-decoration:none; border-radius:4px; min-width:0; }
+    .photo-frame { aspect-ratio:4/5; padding:12px; background:#eeede6; border:1px solid #e1e3db; border-radius:4px; display:flex; align-items:center; justify-content:center; transition:background .18s; }
+    .photo img { display:block; max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; }
+    .photo:hover .photo-frame { background:#e0e7e1; }
+    .photo-meta { display:flex; align-items:center; gap:9px; padding:10px 2px 0; font-size:12px; color:var(--muted); }
+    .photo-number { margin-right:auto; font-variant-numeric:tabular-nums; }
+    .photo-action { color:var(--accent); }
+    footer { border-top:1px solid var(--line); padding:25px 0 38px; color:var(--muted); font-size:13px; }
+    dialog { border:1px solid #627273; border-radius:10px; background:#16282d; color:#fff; width:min(1150px,calc(100% - 32px)); max-height:calc(100dvh - 32px); padding:20px; }
+    dialog::backdrop { background:rgba(9,18,22,.88); }
+    .viewer-top, .viewer-bottom { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    #viewer-caption { font-size:17px; margin:0; font-weight:500; }
+    .viewer-stage { display:flex; justify-content:center; align-items:center; margin:16px 0; }
+    #viewer-image { display:block; max-width:100%; max-height:65dvh; width:auto; height:auto; object-fit:contain; }
+    .viewer-button { border:1px solid #7d9091; border-radius:5px; background:transparent; color:#fff; padding:9px 14px; cursor:pointer; }
+    .viewer-button:hover { background:#33494e; }
+    .viewer-nav { display:flex; align-items:center; gap:14px; }
+    #viewer-position { font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    #original-link { color:#fff; font-size:14px; text-underline-offset:4px; }
+    @media (max-width:600px) {
+      .page { width:calc(100% - 32px); }
+      .topbar { padding:16px 0; gap:10px; }
+      .language-picker { gap:8px; font-size:12px; }
+      .album-mark { font-size:20px; }
+      header { padding:38px 0 30px; }
+      .intro { font-size:18px; }
+      .photo-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 12px; }
+      .photo-frame { padding:6px; }
+      .photo-action { display:none; }
+      h2 { font-size:18px; }
+      dialog { padding:14px; }
+      .viewer-bottom { flex-direction:column; }
+      .viewer-top { align-items:flex-start; }
+      #viewer-image { max-height:55dvh; }
+      #viewer-caption { font-size:15px; }
+      .viewer-button { padding:8px 10px; }
+    }
+    @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <span class="album-mark" aria-hidden="true">AI / Album</span>
+      <div class="language-picker"><label for="language" data-i18n="language">Language</label><select id="language"><option value="en" lang="en" selected>English</option><option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option></select></div>
+    </div>
+    <header>
+      <p class="eyebrow" data-i18n="eyebrow">FAMILY PHOTOS &amp; AI CREATIONS</p>
+      <h1 data-i18n="title">AI photo album</h1>
+      <p class="intro" data-i18n="intro">Family memories, reimagined with AI.</p>
+      <p class="hint" data-i18n="hint">Select any thumbnail to view the photo. Use the arrows to browse the album.</p>
+    </header>
+    <main>
+      <div class="album-info" data-i18n="count">22 photos</div>
+      <noscript><p>You can open every full-size photo using its thumbnail. Enable JavaScript to switch languages and use the album viewer.</p></noscript>
+      <section class="album-section" aria-labelledby="caption-0">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><h2 id="caption-0" data-caption="0">A picture of me when I was young, with my baby.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/hF0_oBVzjtwO.webp" data-photo="0" aria-label="View photo 1: A picture of me when I was young, with my baby.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/hF0_oBVzjtwO.webp" width="240" height="320" alt="A picture of me when I was young, with my baby. — Photo 1" loading="eager" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">01</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-1">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">02</span><h2 id="caption-1" data-caption="1">Then I made these with AI.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/w6z7B6TpgJ9r.webp" data-photo="1" aria-label="View photo 2: Then I made these with AI.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/w6z7B6TpgJ9r.webp" width="420" height="560" alt="Then I made these with AI. — Photo 2" loading="eager" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">02</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/Xwb4GD_48bJB.webp" data-photo="2" aria-label="View photo 3: Then I made these with AI.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/Xwb4GD_48bJB.webp" width="420" height="560" alt="Then I made these with AI. — Photo 3" loading="eager" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">03</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/r3Puyyt4otqo.webp" data-photo="3" aria-label="View photo 4: Then I made these with AI.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/r3Puyyt4otqo.webp" width="420" height="560" alt="Then I made these with AI. — Photo 4" loading="eager" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">04</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/Z_pIexbC9tk9.webp" data-photo="4" aria-label="View photo 5: Then I made these with AI.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/Z_pIexbC9tk9.webp" width="420" height="560" alt="Then I made these with AI. — Photo 5" loading="eager" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">05</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-2">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">03</span><h2 id="caption-2" data-caption="2">My wife with two friends. She is in the middle.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/hbyOvF3EKvO6.webp" data-photo="5" aria-label="View photo 6: My wife with two friends. She is in the middle.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/hbyOvF3EKvO6.webp" width="560" height="420" alt="My wife with two friends. She is in the middle. — Photo 6" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">06</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/2nMg0zUf1j5p.webp" data-photo="6" aria-label="View photo 7: My wife with two friends. She is in the middle.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/2nMg0zUf1j5p.webp" width="560" height="420" alt="My wife with two friends. She is in the middle. — Photo 7" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">07</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/4SXcen5_TVCM.webp" data-photo="7" aria-label="View photo 8: My wife with two friends. She is in the middle.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/4SXcen5_TVCM.webp" width="560" height="420" alt="My wife with two friends. She is in the middle. — Photo 8" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">08</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-3">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">04</span><h2 id="caption-3" data-caption="3">My wife when she was very young.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/fiupTWHEmnCv.webp" data-photo="8" aria-label="View photo 9: My wife when she was very young.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/fiupTWHEmnCv.webp" width="420" height="560" alt="My wife when she was very young. — Photo 9" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">09</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/NApOlRAeIpn5.webp" data-photo="9" aria-label="View photo 10: My wife when she was very young.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/NApOlRAeIpn5.webp" width="420" height="560" alt="My wife when she was very young. — Photo 10" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">10</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-4">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">05</span><h2 id="caption-4" data-caption="4">This is when our son was 7 years old.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/YaONoXFwMj4V.webp" data-photo="10" aria-label="View photo 11: This is when our son was 7 years old.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/YaONoXFwMj4V.webp" width="420" height="560" alt="This is when our son was 7 years old. — Photo 11" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">11</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/3m-xr9fkK_hM.webp" data-photo="11" aria-label="View photo 12: This is when our son was 7 years old.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/3m-xr9fkK_hM.webp" width="420" height="560" alt="This is when our son was 7 years old. — Photo 12" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">12</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-5">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">06</span><h2 id="caption-5" data-caption="5">My young wife in anime form.</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/YZCTjJEhAaYq.webp" data-photo="12" aria-label="View photo 13: My young wife in anime form.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/YZCTjJEhAaYq.webp" width="315" height="560" alt="My young wife in anime form. — Photo 13" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">13</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/5c50cSj9d3fs.webp" data-photo="13" aria-label="View photo 14: My young wife in anime form.">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/5c50cSj9d3fs.webp" width="315" height="560" alt="My young wife in anime form. — Photo 14" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">14</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-6">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">07</span><h2 id="caption-6" data-caption="6">The Padow family</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/5qcdj7_PuyLb.webp" data-photo="14" aria-label="View photo 15: The Padow family">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/5qcdj7_PuyLb.webp" width="420" height="560" alt="The Padow family — Photo 15" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">15</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/20X5BwP0pZpG.webp" data-photo="15" aria-label="View photo 16: The Padow family">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/20X5BwP0pZpG.webp" width="420" height="560" alt="The Padow family — Photo 16" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">16</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-7">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">08</span><h2 id="caption-7" data-caption="7">Tomako in a Chinese dress</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/qnc74YfbCKsj.webp" data-photo="16" aria-label="View photo 17: Tomako in a Chinese dress">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/qnc74YfbCKsj.webp" width="560" height="315" alt="Tomako in a Chinese dress — Photo 17" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">17</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/qbirFr4tf_gR.webp" data-photo="17" aria-label="View photo 18: Tomako in a Chinese dress">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/qbirFr4tf_gR.webp" width="560" height="315" alt="Tomako in a Chinese dress — Photo 18" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">18</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/eX9Mwg8J9i5Q.webp" data-photo="18" aria-label="View photo 19: Tomako in a Chinese dress">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/eX9Mwg8J9i5Q.webp" width="560" height="315" alt="Tomako in a Chinese dress — Photo 19" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">19</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-8">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">09</span><h2 id="caption-8" data-caption="8">Tomako in a wedding dress</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/kYhq8I7zW0H6.webp" data-photo="19" aria-label="View photo 20: Tomako in a wedding dress">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/kYhq8I7zW0H6.webp" width="315" height="560" alt="Tomako in a wedding dress — Photo 20" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">20</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a><a class="photo" href="images/AIalbum/uotBRDg9-fjN.webp" data-photo="20" aria-label="View photo 21: Tomako in a wedding dress">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/uotBRDg9-fjN.webp" width="315" height="560" alt="Tomako in a wedding dress — Photo 21" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">21</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+<section class="album-section" aria-labelledby="caption-9">
+      <div class="section-heading"><span class="section-number" aria-hidden="true">10</span><h2 id="caption-9" data-caption="9">Gunnar and Usmar</h2></div>
+      <div class="photo-grid"><a class="photo" href="images/AIalbum/rDZBbsRu17XM.webp" data-photo="21" aria-label="View photo 22: Gunnar and Usmar">
+          <div class="photo-frame"><img src="images/AIalbum/thumbnails/rDZBbsRu17XM.webp" width="560" height="420" alt="Gunnar and Usmar — Photo 22" loading="lazy" decoding="async"></div>
+          <span class="photo-meta"><span class="photo-number">22</span><span class="photo-action" data-i18n="view">View photo</span><span aria-hidden="true">↗</span></span>
+        </a></div>
+    </section>
+    </main>
+    <footer data-i18n="footer">Family memories · 22 photos</footer>
+  </div>
+  <dialog id="viewer" aria-labelledby="viewer-caption">
+    <div class="viewer-top"><h2 id="viewer-caption" aria-live="polite"></h2><button type="button" class="viewer-button" id="close-viewer" data-i18n="close" autofocus>Close</button></div>
+    <div class="viewer-stage"><img id="viewer-image" alt=""></div>
+    <div class="viewer-bottom">
+      <div class="viewer-nav"><button type="button" class="viewer-button" id="previous" data-i18n="previous">Previous</button><span id="viewer-position" aria-live="polite"></span><button type="button" class="viewer-button" id="next" data-i18n="next">Next</button></div>
+      <a id="original-link" target="_blank" rel="noopener" data-i18n="original">Open full-size image</a>
+    </div>
+  </dialog>
+  <script>
+    'use strict';
+    const translations = {
+  "en": {
+    "title": "AI photo album",
+    "eyebrow": "FAMILY PHOTOS & AI CREATIONS",
+    "intro": "Family memories, reimagined with AI.",
+    "hint": "Select any thumbnail to view the photo. Use the arrows to browse the album.",
+    "language": "Language",
+    "count": "22 photos",
+    "photo": "Photo",
+    "view": "View photo",
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next",
+    "original": "Open full-size image",
+    "footer": "Family memories · 22 photos",
+    "nojs": "You can open every full-size photo using its thumbnail. Enable JavaScript to switch languages and use the album viewer.",
+    "captions": [
+      "A picture of me when I was young, with my baby.",
+      "Then I made these with AI.",
+      "My wife with two friends. She is in the middle.",
+      "My wife when she was very young.",
+      "This is when our son was 7 years old.",
+      "My young wife in anime form.",
+      "The Padow family",
+      "Tomako in a Chinese dress",
+      "Tomako in a wedding dress",
+      "Gunnar and Usmar"
+    ]
+  },
+  "ja": {
+    "title": "AIフォトアルバム",
+    "eyebrow": "家族の写真とAI作品",
+    "intro": "家族の思い出を、AIでもう一度。",
+    "hint": "サムネイルを選ぶと写真が拡大します。矢印で前後の写真を見ることができます。",
+    "language": "言語",
+    "count": "写真22枚",
+    "photo": "写真",
+    "view": "写真を表示",
+    "close": "閉じる",
+    "previous": "前へ",
+    "next": "次へ",
+    "original": "元のサイズで画像を開く",
+    "footer": "家族の思い出 · 写真22枚",
+    "captions": [
+      "若い頃の私と赤ちゃんの写真。",
+      "その後、AIでこんな画像を作りました。",
+      "妻と友人2人。真ん中にいるのが妻です。",
+      "妻がとても若かった頃。",
+      "息子が7歳だった頃。",
+      "若い頃の妻をアニメ風に。",
+      "Padow家",
+      "チャイナドレス姿のTomako",
+      "ウェディングドレス姿のTomako",
+      "GunnarとUsmar"
+    ]
+  },
+  "es": {
+    "title": "Álbum de fotos con IA",
+    "eyebrow": "FOTOS FAMILIARES Y CREACIONES CON IA",
+    "intro": "Recuerdos familiares, reimaginados con IA.",
+    "hint": "Selecciona una miniatura para ver la foto. Usa las flechas para recorrer el álbum.",
+    "language": "Idioma",
+    "count": "22 fotos",
+    "photo": "Foto",
+    "view": "Ver foto",
+    "close": "Cerrar",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "original": "Abrir imagen a tamaño completo",
+    "footer": "Recuerdos familiares · 22 fotos",
+    "captions": [
+      "Una foto de cuando era joven, con mi bebé.",
+      "Después hice estas imágenes con IA.",
+      "Mi esposa con dos amigos. Ella está en el centro.",
+      "Mi esposa cuando era muy joven.",
+      "Cuando nuestro hijo tenía 7 años.",
+      "Mi esposa de joven, en versión anime.",
+      "La familia Padow",
+      "Tomako con un vestido chino",
+      "Tomako con un vestido de novia",
+      "Gunnar y Usmar"
+    ]
+  }
+};
+    const photos = [
+  {
+    "src": "images/AIalbum/hF0_oBVzjtwO.webp",
+    "group": 0
+  },
+  {
+    "src": "images/AIalbum/w6z7B6TpgJ9r.webp",
+    "group": 1
+  },
+  {
+    "src": "images/AIalbum/Xwb4GD_48bJB.webp",
+    "group": 1
+  },
+  {
+    "src": "images/AIalbum/r3Puyyt4otqo.webp",
+    "group": 1
+  },
+  {
+    "src": "images/AIalbum/Z_pIexbC9tk9.webp",
+    "group": 1
+  },
+  {
+    "src": "images/AIalbum/hbyOvF3EKvO6.webp",
+    "group": 2
+  },
+  {
+    "src": "images/AIalbum/2nMg0zUf1j5p.webp",
+    "group": 2
+  },
+  {
+    "src": "images/AIalbum/4SXcen5_TVCM.webp",
+    "group": 2
+  },
+  {
+    "src": "images/AIalbum/fiupTWHEmnCv.webp",
+    "group": 3
+  },
+  {
+    "src": "images/AIalbum/NApOlRAeIpn5.webp",
+    "group": 3
+  },
+  {
+    "src": "images/AIalbum/YaONoXFwMj4V.webp",
+    "group": 4
+  },
+  {
+    "src": "images/AIalbum/3m-xr9fkK_hM.webp",
+    "group": 4
+  },
+  {
+    "src": "images/AIalbum/YZCTjJEhAaYq.webp",
+    "group": 5
+  },
+  {
+    "src": "images/AIalbum/5c50cSj9d3fs.webp",
+    "group": 5
+  },
+  {
+    "src": "images/AIalbum/5qcdj7_PuyLb.webp",
+    "group": 6
+  },
+  {
+    "src": "images/AIalbum/20X5BwP0pZpG.webp",
+    "group": 6
+  },
+  {
+    "src": "images/AIalbum/qnc74YfbCKsj.webp",
+    "group": 7
+  },
+  {
+    "src": "images/AIalbum/qbirFr4tf_gR.webp",
+    "group": 7
+  },
+  {
+    "src": "images/AIalbum/eX9Mwg8J9i5Q.webp",
+    "group": 7
+  },
+  {
+    "src": "images/AIalbum/kYhq8I7zW0H6.webp",
+    "group": 8
+  },
+  {
+    "src": "images/AIalbum/uotBRDg9-fjN.webp",
+    "group": 8
+  },
+  {
+    "src": "images/AIalbum/rDZBbsRu17XM.webp",
+    "group": 9
+  }
+];
+    const languageMenu = document.getElementById('language');
+    const viewer = document.getElementById('viewer');
+    const viewerImage = document.getElementById('viewer-image');
+    let language = 'en';
+    let currentPhoto = 0;
+    let lastThumbnail = null;
+
+    function showPhoto(index) {
+      currentPhoto = (index + photos.length) % photos.length;
+      const photo = photos[currentPhoto];
+      const words = translations[language];
+      const caption = words.captions[photo.group];
+      viewerImage.src = photo.src;
+      viewerImage.alt = `${caption} — ${words.photo} ${currentPhoto + 1}`;
+      document.getElementById('viewer-caption').textContent = caption;
+      document.getElementById('viewer-position').textContent = `${currentPhoto + 1} / ${photos.length}`;
+      document.getElementById('original-link').href = photo.src;
+    }
+
+    function setLanguage(value) {
+      language = Object.hasOwn(translations, value) ? value : 'en';
+      const words = translations[language];
+      document.documentElement.lang = language;
+      document.title = words.title;
+      languageMenu.value = language;
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        element.textContent = words[element.dataset.i18n];
+      });
+      document.querySelectorAll('[data-caption]').forEach(element => {
+        element.textContent = words.captions[Number(element.dataset.caption)];
+      });
+      document.querySelectorAll('[data-photo]').forEach(link => {
+        const index = Number(link.dataset.photo);
+        const caption = words.captions[photos[index].group];
+        link.setAttribute('aria-label', `${words.view} ${index + 1}: ${caption}`);
+        link.querySelector('img').alt = `${caption} — ${words.photo} ${index + 1}`;
+      });
+      if (viewer.open) showPhoto(currentPhoto);
+    }
+
+    document.querySelectorAll('[data-photo]').forEach(link => {
+      link.addEventListener('click', event => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || typeof viewer.showModal !== 'function') return;
+        event.preventDefault();
+        lastThumbnail = link;
+        showPhoto(Number(link.dataset.photo));
+        viewer.showModal();
+        document.body.classList.add('viewer-open');
+      });
+    });
+    languageMenu.addEventListener('change', () => setLanguage(languageMenu.value));
+    document.getElementById('previous').addEventListener('click', () => showPhoto(currentPhoto - 1));
+    document.getElementById('next').addEventListener('click', () => showPhoto(currentPhoto + 1));
+    document.getElementById('close-viewer').addEventListener('click', () => viewer.close());
+    viewer.addEventListener('close', () => {
+      document.body.classList.remove('viewer-open');
+      if (lastThumbnail) lastThumbnail.focus({preventScroll:true});
+    });
+    viewer.addEventListener('click', event => {
+      const bounds = viewer.getBoundingClientRect();
+      if (event.target === viewer && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) viewer.close();
+    });
+    viewer.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault();
+        showPhoto(currentPhoto + (event.key === 'ArrowLeft' ? -1 : 1));
+      }
+    });
+    setLanguage('en');
+  </script>
+</body>
+</html>
