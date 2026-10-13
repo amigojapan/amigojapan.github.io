@@ -506,7 +506,12 @@
         document.body.classList.add('viewer-open');
       });
     });
-    languageMenu.addEventListener('change', () => setLanguage(languageMenu.value));
+    languageMenu.addEventListener('change', () => {
+      setLanguage(languageMenu.value);
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', language);
+      window.history.replaceState(window.history.state, '', url);
+    });
     document.getElementById('previous').addEventListener('click', () => showPhoto(currentPhoto - 1));
     document.getElementById('next').addEventListener('click', () => showPhoto(currentPhoto + 1));
     document.getElementById('close-viewer').addEventListener('click', () => viewer.close());
