@@ -524,7 +524,7 @@
         showPhoto(currentPhoto + (event.key === 'ArrowLeft' ? -1 : 1));
       }
     });
-    setLanguage('en');
+    setLanguage(new URLSearchParams(window.location.search).get('lang') || 'en');
   </script>
 </body>
 </html>
