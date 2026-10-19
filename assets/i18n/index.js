@@ -122,7 +122,7 @@ window.SiteTranslations = {
     ],
     "(calculated relatively from October 2002) My wife does not like her name, so we call her \"Tomako\". My son is called \"Chihiro Alexander\"": [
       "(calculated relatively from October 2002) My wife does not like her name, so we call her \"Tomako\". My son is called \"Chihiro Alexander\"",
-      "(2002年10月からの計算) 妻の名前は気に入らないので「トマコ」と呼んでいます 息子の名前は「チヒロ・アレキサンダー」",
+      "(2002年10月からの計算) 妻の名前は気に入らないので「トマコ」と呼んでいます 息子の名前は「千尋アレキサンダー」",
       "(calculada relativamente a partir de octubre de 2002) A mi esposa no le gusta su nombre, así que la llamamos \"Tomako\". Mi hijo se llama \"Chihiro Alexander\""
     ],
     "(calculated relatively from October 2002) in Kawaguchi, Saitama Prefecture Japan. Born December 8 1977 in Mexico City, dual national: Mexican and American Citizenship.": [
@@ -392,7 +392,7 @@ window.SiteTranslations = {
     ],
     "Deconversion from the church of world messianity": [
       "Deconversion from the church of world messianity",
-      "世界 mesianityの教会から脱退",
+      "世界急性教の教会から脱退",
       "Desconversión de la iglesia de la mesiánica mundial"
     ],
     "Diplomas:": [
