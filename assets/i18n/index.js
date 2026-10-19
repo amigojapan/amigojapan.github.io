@@ -572,7 +572,7 @@ window.SiteTranslations = {
     ],
     "I always tell people not to tell my wife. But my first love is programming, my second love is Sailor Moon. Then people usually ask \"what place is your wife?” So yes, I remember when I watched the TV Azteca ad for Sailor Moon, it said it was “The most animated show on TV” and from the moment I saw the flashing colors of the transformation scene, I was in love with the show for life. My favorite part of Sailor Moon is Sailor Stars which I consider to be a masterpiece of art.": [
       "I always tell people not to tell my wife. But my first love is programming, my second love is Sailor Moon. Then people usually ask \"what place is your wife?” So yes, I remember when I watched the TV Azteca ad for Sailor Moon, it said it was “The most animated show on TV” and from the moment I saw the flashing colors of the transformation scene, I was in love with the show for life. My favorite part of Sailor Moon is Sailor Stars which I consider to be a masterpiece of art.",
-      "私はいつも人に妻に言わないように言います. でも私の最初の恋はプログラミング 第二の恋はサイラー・ムーン 普段\"あなたの妻はどこにいるの?\"と聞かれます \"セイラー・ムーンに関するアステカテレビの広告を見た時 それはテレビで最もアニメ化された番組だった\"と書かれていました 変容シーンの輝く色を見た瞬間から 私はずっと番組に恋していました 私の好きなセイラー・ムーンは\"セイラー・スターズ\"です 芸術の傑作だと思います",
+      "私はいつも人に妻に言わないように言います. でも私の最初の恋はプログラミング 第二の恋はセーラームーン 普段「あなたの妻はどこにいるの?」と聞かれます \"セーラームーンに関するテレビアズテカの広告を見た時 それはテレビで最もカラフルアニメ化された番組だった「と書かれていました 変容シーンの輝く色を見た瞬間から 私はずっと番組に恋していました 私の好きなセーラームーンはセーラー・スターズ」です 芸術の傑作だと思います",
       "Siempre le digo a la gente que no se lo diga a mi esposa. Pero mi primer amor es la programación, mi segundo amor es Sailor Moon. Entonces la gente generalmente pregunta \"¿qué lugar es su esposa?\" Así que sí, recuerdo cuando vi el anuncio de TV Azteca para Sailor Moon, dijo que era \"El espectáculo más animado en televisión\" y desde el momento en que vi los colores llamativos de la escena de transformación, estaba enamorado del espectáculo por vida. Mi parte favorita de Sailor Moon es Sailor Stars que considero una obra maestra del arte."
     ],
     "I am better at prototypes. I am not really cut out for final products.... I don't think it is the same kind of people that do these things.... but often I run into people that say I should be like the painter with the ruler and paint a realistic painting, when I am really aiming for a piccaso like abstract painting": [
@@ -1027,7 +1027,7 @@ window.SiteTranslations = {
     ],
     "Sailor Moon drawn by my wife ;)": [
       "Sailor Moon drawn by my wife ;)",
-      "私の妻が描いたセイラー・ムーン",
+      "私の妻が描いたセーラームーン",
       "Luna de marinero dibujada por mi esposa;)"
     ],
     "Self quotes": [
