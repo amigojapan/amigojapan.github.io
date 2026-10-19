@@ -1,5 +1,10 @@
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"></head><body>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/site-i18n.css">
+<script defer src="assets/i18n/8_basics_of_programming_in_python3.js"></script>
+<script defer src="assets/site-i18n.js"></script>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>8 Basics of Programming in python3</title>
+</head><body>
 <br>8 Basics of Programming in python3
 <br>
 <br>Licensed under the Creative Commons Attribution licence (CC-BY),
@@ -27,13 +32,13 @@
 that instructions always follow a regular order, usually from top
 to down.
 For example:
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth()
 CombMyHair()
 GoToWork()
 </code></pre>
 I will never go to or work before I brush my teeth and comb my hair...
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth()
 GoToWork()
 CombMyHair()
@@ -76,7 +81,7 @@ almost everything you see in a computer program is a statement,
  keywords such as while().
 Lets talk about assignment statements.
 For example, lets take the following program
-<pre><code>
+<pre translate="no"><code translate="no">
 x=3
 x=5
 x=x+1
@@ -105,7 +110,7 @@ is true or false, for example:
 In order to explain conditional statements I am also forced to explain what
 blocks of code are.
 Firstly, here is an example in python:
-<code>
+<code translate="no">
 x=5
 if x>3:
   print("x is more than 3")
@@ -126,7 +131,7 @@ code both are "indented", which means they are a certain ammount to the right.
 This means both lines will be executed, and since x>3 is true, the print
 statements will be executed and the following text will display on the screen:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
   x is more than 3
   I wish x was less than 3
 </code></pre>
@@ -138,7 +143,7 @@ Finally we set x to 2. And next the if statement checks wether x<3 is true,
 which it is, printing out the text in that print statement.
 the complete output of this program is:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
 x is more than 3
 I with x was less than 3
 x is not more than 3 
@@ -149,14 +154,14 @@ x is not more than 3
 part which is a function call and the hard part which is a function declaration.
 in the beginning of this paper I used three function calls to say what I was
 telling the computer to do:
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth()
 CombMyHair()
 GoToWork()
 </code></pre>
 <br>
 Take the following program
-<pre><code>
+<pre translate="no"><code translate="no">
 def calculate_tax(tax_type, ammount):
   if tax_type=="luxury":
     return ammount * 0.10
@@ -171,7 +176,7 @@ print("restaurant_tax is " + str(restaurant_tax))
 <br>
 The output of this program should be this:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
   purse_tax is 8.0
   restaurant_tax is 10.0
 </code></pre>
@@ -210,13 +215,13 @@ This is accomplished by surrounding the values with str().
 <br>5.Input/output
 <br>
 <br>Now, here is the most simple program every programmer starts out with
-<pre><code>
+<pre translate="no"><code translate="no">
 print(“hello world”)
 </code></pre>
 <br>
 This is a simple example of "output"
 <br>Now lets try some input:
-<pre><code>
+<pre translate="no"><code translate="no">
 print("enter your name:")
 name=input()
 print("enter your last name:")
@@ -225,7 +230,7 @@ print("welcome to our program " + name + " " + lname + "!\n")
 </code></pre>
 The output in my case after entering my name is as follows:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
 enter your name:
 Usmar
 enter your last name:
@@ -241,7 +246,7 @@ while Loops
 A while loop is a loop that executed while a condition is true, and ends when 
 the condition is false.
 Now lets get some example code:
-<pre><code>
+<pre translate="no"><code translate="no">
 cont=True
 while cont==True:
     print("continue? 1)Yes 2)No:")
@@ -252,7 +257,7 @@ while cont==True:
 <br>
 Here is some sample output for this code:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
 continue? 1)Yes 2)No:
 1
 continue? 1)Yes 2)No:
@@ -265,7 +270,7 @@ continue? 1)Yes 2)No:
 for loops.
 for loops are one of the most common kind of loops in programming.
 Here is some sample code:
-<pre><code>
+<pre translate="no"><code translate="no">
 sum = 0
 for counter in range(1,5):
     sum += counter
@@ -274,7 +279,7 @@ for counter in range(1,5):
 <br>
 <br>The output of all of these programs is:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
   counter is 1 and sum is 1
   counter is 2 and sum is 3
   counter is 3 and sum is 6
@@ -290,7 +295,7 @@ This code contains comments, where anything
 after a # sign is a comment, and won't do anything in the program.
 Examine the comments on each line which has one to undertsand what
 the program does.
-<pre><code>
+<pre translate="no"><code translate="no">
 fruits=["banana","apple","peach","pear"] # create a list
 print(fruits[0]) # print first element of list
 print(fruits[3]) # print second element
@@ -309,7 +314,7 @@ for fruit in fruits:
 <br>
 The output for this code will look like this:
 <br>
-<pre><code>
+<pre translate="no"><code translate="no">
 banana
 pear
 now reprinting all fruits

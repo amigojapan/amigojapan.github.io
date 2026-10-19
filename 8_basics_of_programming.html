@@ -1,4 +1,9 @@
-<html><body>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/site-i18n.css">
+<script defer src="assets/i18n/8_basics_of_programming.js"></script>
+<script defer src="assets/site-i18n.js"></script>
+<title>8 Basics of Programming</title>
+</head><body>
 <BR />8 Basics of Programming
 <BR />
 <BR />Licensed under the Creative Commons Attribution licence (CC-BY),
@@ -25,7 +30,7 @@
 <BR />the first thing we need to learn in order to become a programmer is that instructions always follow a regular order, usually from top
  to down (and sometimes from left to right)
 for example, if I write:
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth();
 CombMyHair();
 GoToWork();
@@ -33,7 +38,7 @@ GoToWork();
 it will never got or work before I brush my teeth and comb my hair...
 A great program to learn instruction order is lightbot (which does it from left to right and then top to down, but the idea is still there)
 what would happen if I wrote?:
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth();
 GoToWork();
 CombMyHair();
@@ -69,7 +74,7 @@ almost everything you see in a computer program is a statement, statements are c
  keywords such as while() or the thing that goes inside the while(), the condition is also a statement init of itself
 Lets talk about assignment statements.
 for example, lets take the following program
-<pre><code>
+<pre translate="no"><code translate="no">
 x=3;
 x=5;
 x=x+1;
@@ -97,7 +102,7 @@ for example x=5>3;  the x is our usual lvalue which will store the result of the
 <BR />3. Conditionals/block of code 
 <BR />a conditional statement is a statement which give usually two different flow controls depending on wether the statement it is
  evaluation is true or false, for example:
-<pre><code>
+<pre translate="no"><code translate="no">
 x=5>3;
 if(x) {
 	//this block of code which will run
@@ -109,7 +114,7 @@ a block of code can contain many statements or just one statement or even no sta
 but before I go deep into blocks of code, lets look at the previous example. x became true because of the first statement in the
  program, if(x) checks to see if x is true or false, if it is true it will run the following statement which is usually a block of code.
 If I switch it around to:
-<pre><code>
+<pre translate="no"><code translate="no">
 x=3>5;
 if(x) {
 	//this block of code won't run
@@ -117,7 +122,7 @@ if(x) {
 </code></pre>
 then the block of code won’t run. because x is false.
 we can make these into shorter programs as follows:
-<pre><code>
+<pre translate="no"><code translate="no">
 if(5>3) {
 	//this block of code which will run
 }
@@ -126,7 +131,7 @@ if(3>5) {
 }
 </code></pre>
 the if statement becomes even more useful when we introduce the “else” statement, for example in the following program: 
-<pre><code>
+<pre translate="no"><code translate="no">
 x=5>3;
 if(x) {
 	//this block of code which will run
@@ -136,7 +141,7 @@ if(x) {
 </code></pre>
 now lets get into blocks of code.
 what if I wrote the following program? 
-<pre><code>
+<pre translate="no"><code translate="no">
 x=5>3;
 if(x) {
 	//this block of code which will run
@@ -150,7 +155,7 @@ what would y be at the end of the program execution?
 try to solve this yourself.
 the answer is: 10 because the block of code that run made y into 10
 then again, lets say the program said this:
-<pre><code>
+<pre translate="no"><code translate="no">
 x=3>5;
 if(x) {
 	//this block of code won't run
@@ -175,7 +180,7 @@ then the fi statement tests that to be false, and jumpy to the else part of the 
 <BR />now functions need to be broken down into 2 separate parts, the easy part which is a function call and the hard part which is a
  function declaration.
 in the be inning go this paper I used three function calls to say what I was telling the computer to do:
-<pre><code>
+<pre translate="no"><code translate="no">
 BrushMyTeeth();
 CombMyHair();
 GoToWork();
@@ -185,7 +190,7 @@ I think I will use C as an example of how function declarations should be writte
   system at all, but if you are ever in the situation of needing to learn an explicit typed language, it is better if you know 
   it beforehand...
 OK, this is an example of a function definition:
-<pre><code>
+<pre translate="no"><code translate="no">
 float calculate_tax(float tax_rate, float amount) {
 	return amount * tax_rate;
 }
@@ -217,7 +222,7 @@ first we solve the vale of 2.00*0.8  which is 1.6 then the return statement hand
  like a typewriter and a printer, and instead of using a screen they used to print on paper for output...
 <BR />
 <BR />now, here is the most simple program every programmer starts out with (in C)
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -238,7 +243,7 @@ this program would literally print hello world  on a piece of paper in the old d
  “terminal program”.
 the python version does the same, but with obviously much more simplicity to it...
 now lets try putting an integer into our string:
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -253,7 +258,7 @@ this printf has two placeholders called %i which %i means it is waiting for an i
   for integers. then the second and third parameters which are a and b which contain the integers that will replace the
    two %i’s in the string. then finally this is computed and printed of the screen.
 in python this same program is quite a bit more simple, it would go as follows:
-<pre><code>
+<pre translate="no"><code translate="no">
 a=42;
 b=36;
 </code></pre>
@@ -265,7 +270,7 @@ value of a is 42 and value of b is 36
 note that str() is a function which takes a number and returns a string in python
 <BR />
 <BR />now lets try some input:
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -288,7 +293,7 @@ Variables that are setup inside a function belong to that function. Other functi
   This value is called a pointer.
 but pointers are one of the most difficult portions of C and are beyond the scope of this tutorial
 almost the same program in python:
-<pre><code>
+<pre translate="no"><code translate="no">
 print "enter your name:"
 name=raw_input()
 print "enter your last name:"
@@ -302,7 +307,7 @@ while loop
 a while loop is a loop that executed while a condition is true, and ends when a condition is not true.
 an example of a while loop in C would be:
 <BR />
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -328,7 +333,7 @@ user chooses 1, then the contention will continue to be true, and the program wi
 again, until the user no longer chooses 1
 <BR />
 <BR />the same program in python would be better written like this:
-<pre><code>
+<pre translate="no"><code translate="no">
 cont="1"
 while cont=="1":
     print "continue? 1)Yes 2)No:"
@@ -345,7 +350,7 @@ into blocks inside blocks, it can get very hard to tell which curly { ends which
 <BR />do while loop
 while this kind of loop is not as common as while loops, it is still useful and can be neater in certain situations:
 lets take these two examples from wikipedia
-<pre><code>
+<pre translate="no"><code translate="no">
 do {
    do_work();  
 } while (condition);
@@ -353,7 +358,7 @@ do {
 <BR />
 <BR />is equivalent to
 <BR />
-<pre><code>
+<pre translate="no"><code translate="no">
 do_work();
 while (condition) {
    do_work();
@@ -369,7 +374,7 @@ can increment(or do other operations) with the variable you are using
 and while while loops can do anything a for loop can do, it would take up more lines of code to do the same thing.
 so a for loop is a nice shortcut for writing a loop that repeats a certain ammount of times.
 <BR />
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -387,7 +392,7 @@ the counter is initialized to 1 then the condition for the loop to continue woul
 <BR />
 <BR />we could write the same program using a while loop, as follows:
 <BR />
-<pre><code>
+<pre translate="no"><code translate="no">
 #include&lt;stdio.h&gt;
 
 int main() {
@@ -403,7 +408,7 @@ int main() {
 <BR />
 <BR />and in python it would be:
 <BR />
-<pre><code>
+<pre translate="no"><code translate="no">
 sum = 0
 for counter in range(1,10):
     print  "counter is " + str(counter) + " and sum is " + str(sum)
@@ -412,7 +417,7 @@ for counter in range(1,10):
 <BR />
 <BR />the output of all of these programs is:
 <BR />counter is 1 and sum is 0
-<pre><code>
+<pre translate="no"><code translate="no">
 counter is 2 and sum is 1
 counter is 3 and sum is 3
 counter is 4 and sum is 6
@@ -435,7 +440,7 @@ another very important thing to know in C is that we ALWAYS COUNT FROM 0, that i
 if I want to change the value of myarray[0]  to 100, as I said, it behaves exactly like an integer. you just do myarray[0]=100;
 from then on, tne contents of the array would look pretty much like this [100, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 *important* in C "strings" are really just arrays of characters. so giving a similar example to the last one:
-<BR />char myarr[10] = "hello";
+<BR /><code translate="no">char myarr[10] = "hello";</code>
 <BR />is the same as saying:
 <BR />char myarr[10] = ['h','e','l','l','o','\0'];
 let me explain this, same the zerowe'th element is myarray[0] and it contains 'h'  , notice we MUST surrouns single character simbols

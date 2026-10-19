@@ -74,7 +74,7 @@
 <body>
   <div class="page">
     <div class="topbar">
-      <span class="album-mark" aria-hidden="true">AI / Album</span>
+      <span class="album-mark" aria-hidden="true" data-i18n="brand">AI / Album</span>
       <div class="language-picker"><label for="language" data-i18n="language">Language</label><select id="language"><option value="en" lang="en" selected>English</option><option value="ja" lang="ja">日本語</option><option value="es" lang="es">Español</option></select></div>
     </div>
     <header>
@@ -85,7 +85,7 @@
     </header>
     <main>
       <div class="album-info" data-i18n="count">32 photos</div>
-      <noscript><p>You can open every full-size photo using its thumbnail. Enable JavaScript to switch languages and use the album viewer.</p></noscript>
+      <noscript><p>You can open every full-size photo using its thumbnail. Enable JavaScript to switch languages and use the album viewer.</p><p lang="ja">サムネイルから各写真を元のサイズで開けます。言語の切り替えとアルバムビューアーを使うには、JavaScriptを有効にしてください。</p><p lang="es">Puedes abrir cada foto a tamaño completo desde su miniatura. Activa JavaScript para cambiar de idioma y usar el visor del álbum.</p></noscript>
       <section class="album-section" aria-labelledby="caption-0">
       <div class="section-heading"><span class="section-number" aria-hidden="true">01</span><h2 id="caption-0" data-caption="0">A picture of me when I was young, with my baby.</h2></div>
       <div class="photo-grid"><a class="photo" href="images/AIalbum/hF0_oBVzjtwO.webp" data-photo="0" aria-label="View photo 1: A picture of me when I was young, with my baby.">
@@ -241,6 +241,7 @@
     'use strict';
     const translations = {
   "en": {
+    "brand": "AI / Album",
     "title": "AI photo album",
     "eyebrow": "FAMILY PHOTOS & AI CREATIONS",
     "intro": "Family memories, reimagined with AI.",
@@ -270,6 +271,7 @@
     ]
   },
   "ja": {
+    "brand": "AI / アルバム",
     "title": "AIフォトアルバム",
     "eyebrow": "家族の写真とAI作品",
     "intro": "家族の思い出を、AIでもう一度。",
@@ -298,6 +300,7 @@
     ]
   },
   "es": {
+    "brand": "IA / Álbum",
     "title": "Álbum de fotos con IA",
     "eyebrow": "FOTOS FAMILIARES Y CREACIONES CON IA",
     "intro": "Recuerdos familiares, reimaginados con IA.",
@@ -529,6 +532,7 @@
         showPhoto(currentPhoto + (event.key === 'ArrowLeft' ? -1 : 1));
       }
     });
+    window.addEventListener('popstate', () => setLanguage(new URLSearchParams(window.location.search).get('lang') || 'en'));
     setLanguage(new URLSearchParams(window.location.search).get('lang') || 'en');
   </script>
 </body>

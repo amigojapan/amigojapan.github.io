@@ -1,13 +1,18 @@
-<html>
-<head>
+<html lang="en">
+<head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/site-i18n.css">
+<script defer src="assets/i18n/blood_pressure_analyzer.js"></script>
+<script defer src="assets/site-i18n.js"></script>
+
 <title>blood pressure analyzer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script type="text/javascript">
 	function show_prompt() {
-        alert("this program does not provide any guarantee, always consult your doctor if in doubt");
-		var top=parseInt(prompt("Enter top number(systolic reading)",""));
-		var bottom=parseInt(prompt("Enter bottom number(diastolic reading)",""));
+        const t = text => window.siteI18n ? window.siteI18n.t(text) : text;
+        alert(t("this program does not provide any guarantee, always consult your doctor if in doubt"));
+		var top=parseInt(prompt(t("Enter top number(systolic reading)"),""));
+		var bottom=parseInt(prompt(t("Enter bottom number(diastolic reading)"),""));
         //top                       bottom          diagnosis
         //Below 120 	    and 	Below 80 	    Normal blood pressure 	    Maintain or adopt a healthy lifestyle.
         //120-129 	        and 	Below 80 	    Elevated blood pressure 	Maintain or adopt a healthy lifestyle.
@@ -16,9 +21,9 @@
         var output="<h1>";
 		output=output+"Diagnosis:<BR>";
 	    if(top>=140||bottom>=90) {
-			output=output+"Stage 2 hypertension(high blood pressure), <BR>Maintain or adopt a healthy lifestyle. <BR>Talk to your provider about <BR>taking more than one medication.<BR>";
+			output=output+"Stage 2 hypertension (high blood pressure).<BR>Maintain or adopt a healthy lifestyle.<BR>Talk to your provider about taking more than one medication.<BR>";
 		}else if((top>=130)||bottom>=80) {
-			output=output+"Stage 1 hypertension(high blood pressure),<BR> Maintain or adopt a healthy lifestyle. <BR> Talk to your provider about <BR>taking one or more medications.<BR>";
+			output=output+"Stage 1 hypertension (high blood pressure).<BR>Maintain or adopt a healthy lifestyle.<BR>Talk to your provider about taking one or more medications.<BR>";
 		}else if((top>=120&&top<=129)&&bottom<80) {
 			output=output+"Elevated blood pressure,<BR> Maintain or adopt a healthy lifestyle.<BR>";
         }
@@ -30,9 +35,9 @@
         }
 
 		output=output+"</h1>";
-		output=output+"<BR>Values may be different for children, <BR>ask your doctor. <BR>Note: These recommendations address high blood<BR> pressure as a single health condition.<BR> If you also have heart disease, diabetes,<BR> chronic kidney disease or certain other<BR> conditions, you may need to treat<BR> your blood pressure more aggressively.<BR>";
+		output=output+"<p>Values may be different for children, ask your doctor.</p><p>Note: These recommendations address high blood pressure as a single health condition. If you also have heart disease, diabetes, chronic kidney disease or certain other conditions, you may need to treat your blood pressure more aggressively.</p>";
 		output=output+"<BR>sources from the mayo clinic<BR> <a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>high blood pressure</a> <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>low blood pressure</a><BR>";
-		output=output+"<BR>Use this information at your own risk,<BR>  amigojapan does not take responsibility for<BR> mistaken diagnosis, but I think it is<BR> correct<BR>";
+		output=output+"<p>Use this information at your own risk. amigojapan does not take responsibility for mistaken diagnosis, but I think it is correct.</p>";
         if(isNaN(top)||isNaN(bottom)){	
 			output="Input error,<BR> enter numbers only" ;
 		}
@@ -40,6 +45,6 @@
 	}
 </script>
 </head>
-<div id="output1">No output</div>
-<body onload="show_prompt()";></body>
+<body>
+<div id="output1">No output</div><button type="button" onclick="show_prompt()">Analyze blood pressure</button></body>
 </html>

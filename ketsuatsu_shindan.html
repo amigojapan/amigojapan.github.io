@@ -1,13 +1,18 @@
-<html>
-<head>
+<html lang="ja">
+<head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/site-i18n.css">
+<script defer src="assets/i18n/ketsuatsu_shindan.js"></script>
+<script defer src="assets/site-i18n.js"></script>
+
 <title>血圧診断アプリ</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <script type="text/javascript">
 	function show_prompt() {
-        alert("このプログラムは保証しません。医者に相談してください。");
-		var top=parseInt(prompt("最高血圧値（半画数）",""));
-		var bottom=parseInt(prompt("最低血圧値（半画数）",""));
+        const t = text => window.siteI18n ? window.siteI18n.t(text) : text;
+        alert(t("このプログラムは保証しません。医者に相談してください。"));
+		var top=parseInt(prompt(t("最高血圧値（半画数）"),""));
+		var bottom=parseInt(prompt(t("最低血圧値（半画数）"),""));
 		//90 or less on the top number in a blood pressure reading or 60 mm Hg or less  (the bottom number) is generally considered low blood pressure.
 		//Below 120	and Below 80	Normal blood pressure
 		//Between 120-139	or Between 80-89	Prehypertension
@@ -30,8 +35,8 @@
         }
 
 		output=output+"</h1>";
-		output=output+"<BR>子供は数値が違う場合があります。<BR> 医者に相談してください。<BR> 注意：この診断は高血圧だけのためです。<BR>もし心臓病、糖尿病、腎臓病、その他の<BR>病状もある場合はもっと強烈的に高血圧の治療をしなければいけない場合もあります。<BR>";
-		output=output+"<BR>このプログラムの数値とデータは米国の<BR>マヨクリニックから用意されました。<BR><a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>こちら</a>と <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>こちら</a><BR>";
+		output=output+"<BR>子供は数値が違う場合があります。<BR> 医者に相談してください。<BR> 注意：この診断は高血圧だけのためです。<BR>もし心臓病、糖尿病、腎臓病、その他の病状もある場合はもっと強烈的に高血圧の治療をしなければいけない場合もあります。<BR>";
+		output=output+"<BR>このプログラムの数値とデータは米国のマヨクリニックから用意されました。<BR><a href=http://www.mayoclinic.org/diseases-conditions/high-blood-pressure/in-depth/blood-pressure/art-20050982>こちら</a>と <a href=http://www.mayoclinic.org/diseases-conditions/low-blood-pressure/basics/definition/con-20032298>こちら</a><BR>";
 		output=output+"<BR>この診断だけを信用しないでください。<BR>amigojapanが間違った診断が出ても責任問いません。<BR>";
 		if(isNaN(top)||isNaN(bottom)){	
 			output="入力エラー　半角数のみ使ってください" ;
@@ -40,6 +45,6 @@
 	}
 </script>
 </head>
-<div id="output1">No output</div>
-<body onload="show_prompt()";></body>
+<body>
+<div id="output1">No output</div><button type="button" onclick="show_prompt()">Analyze blood pressure</button></body>
 </html>

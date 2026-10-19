@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Translation regression checks</title>
+<pre id="results">Running…</pre>
+<iframe id="page" style="width:1280px;height:900px"></iframe>
+<script>
+(async () => {
+  const frame = document.getElementById('page');
+  const results = document.getElementById('results');
+  const failures = [];
+  let checks = 0;
+  function assert(condition, message) { checks++; if (!condition) failures.push(message); }
+  const pages = ['index.html','8_Code_Katastrophies_that_help.html','8_basics_of_programming.html','8_basics_of_programming_in_python3.html','8_basics_of_programming/8_basics_of_programming_python3_new.html','Global_Game_Jam_2017_blog_post.html','Japanese_Haggada/index.html','Japanese_Haggada/unedited.html','The_secret_questions_hidden_between_the_lines_of_Genesis.html','amaterasu_story.html','amigojapans_programming_curriculum.html','blood_pressure_analyzer.html','friends_pages.html','from_philosophy_to_the_building_blocks_of_computers.html','ketsuatsu_shindan.html','AIalbum.html'];
+  function load(path) {
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => reject(Error('Timeout: '+path)), 15000);
+      frame.src = '../'+path;
+      const expected = frame.src;
+      const poll = setInterval(() => {
+        if (frame.contentWindow.location.href === expected && frame.contentDocument.readyState !== 'loading' && frame.contentDocument.querySelector('#site-language, #language')) {
+          clearInterval(poll); clearTimeout(timer); setTimeout(resolve,30);
+        }
+      },20);
+    });
+  }
+  const settle = () => new Promise(resolve => setTimeout(resolve, 30));
+  function untranslated(win) {
+    const data = win.SiteTranslations;
+    if (!data) return [];
+    const missing=[];
+    const walker=win.document.createTreeWalker(win.document.documentElement, win.NodeFilter.SHOW_TEXT);
+    while(walker.nextNode()) {
+      const node=walker.currentNode;
+      if (!node.parentElement || node.parentElement.closest('script,style,code,[translate="no"],.demo-highlight,[data-i18n-years]')) continue;
+      const value=node.nodeValue.replace(/\s+/gu,' ').trim();
+      if (!/[a-zA-Z\u3040-\u9fff]/u.test(value) || /^https?:\/\/\S+$/u.test(value)) continue;
+      if (!Object.hasOwn(data.strings,value) && !Object.values(data.strings).some(entry => entry[0] === value)) missing.push(value);
+    }
+    return missing;
+  }
+  try {
+    for (const page of pages) {
+      await load(page+'?lang=en&check=keep#test-anchor');
+      const win=frame.contentWindow, doc=win.document;
+      const menu=doc.querySelector('#site-language, #language');
+      assert(!!menu,page+': dropdown');
+      if (!menu) continue;
+      assert(menu.options.length===3,page+': three languages');
+      assert(doc.documentElement.lang==='en',page+': English URL');
+      const code=[...doc.querySelectorAll('pre[translate="no"],code,.demo-highlight')].map(e=>e.textContent).join('\n');
+      const original=doc.body.textContent;
+      const absent=untranslated(win);
+      assert(absent.length===0,page+': uncovered source text: '+JSON.stringify(absent));
+      for (const lang of ['ja','es','en']) {
+        menu.value=lang;menu.dispatchEvent(new win.Event('change',{bubbles:true}));await settle();
+        const url=new URL(win.location.href);
+        assert(url.searchParams.get('lang')===lang,page+': URL '+lang);
+        assert(url.searchParams.get('check')==='keep' && url.hash==='#test-anchor',page+': preserves URL '+lang);
+        assert(doc.documentElement.lang===lang,page+': html language '+lang);
+        assert([...doc.querySelectorAll('pre[translate="no"],code,.demo-highlight')].map(e=>e.textContent).join('\n')===code,page+': code unchanged '+lang);
+        if(lang!=='en') assert(doc.body.textContent!==original,page+': content translated '+lang);
+      }
+      assert(doc.body.textContent===original,page+': English restored');
+      win.history.replaceState(null,'','?lang=ja&check=keep#test-anchor');
+      win.dispatchEvent(new win.PopStateEvent('popstate'));await settle();
+      assert(menu.value==='ja' && doc.documentElement.lang==='ja',page+': popstate');
+      if(page==='index.html') {
+        const links=[...doc.querySelectorAll('a[href]')].filter(a=>new URL(a.href).pathname.endsWith('friends_pages.html'));
+        assert(links.every(a=>new URL(a.href).searchParams.get('lang')==='ja') && links.length>0,'homepage: language carried into links');
+        const before=doc.querySelector('#maincol_container').textContent;
+        win.dispatchEvent(new win.PageTransitionEvent('pageshow'));await settle();
+        assert(doc.querySelector('#maincol_container').textContent===before,'homepage: restored page not duplicated');
+      }
+      if (page.includes('pressure') || page.includes('ketsuatsu')) {
+        const prompts=[];
+        win.alert=text=>prompts.push(text);
+        for(const lang of ['en','ja','es']) {
+          menu.value=lang;menu.dispatchEvent(new win.Event('change'));await settle();
+          for(const values of [['145','95'],['135','85'],['125','75'],['110','70'],['85','55'],['bad','bad']]) {
+            let i=0;win.prompt=text=>{prompts.push(text);return values[i++];};win.show_prompt();await settle();
+            assert(doc.getElementById('output1').textContent.trim().length>0,page+': diagnosis '+lang+' '+values);
+            const walker=doc.createTreeWalker(doc.getElementById('output1'),win.NodeFilter.SHOW_TEXT);
+            while(walker.nextNode()) {
+              const text=walker.currentNode.nodeValue.replace(/\s+/gu,' ').trim();
+              if(!text || !/[a-zA-Z\u3040-\u9fff]/u.test(text)) continue;
+              assert(Object.values(win.SiteTranslations.strings).some(entry=>entry[['en','ja','es'].indexOf(lang)]===text),page+': translated result text '+lang+' '+text);
+            }
+          }
+        }
+        assert(prompts.some(p=>/[\u3040-\u9fff]/u.test(p)) && prompts.some(p=>/presión|sistólica|garantía/iu.test(p)),page+': translated dialogs');
+      }
+      await load(page+'?lang=ja');
+      assert(frame.contentDocument.documentElement.lang==='ja',page+': Japanese direct URL');
+      await load(page+'?lang=es');
+      assert(frame.contentDocument.documentElement.lang==='es',page+': Spanish direct URL');
+      await load(page+'?lang=invalid');
+      assert(frame.contentDocument.documentElement.lang===(page==='ketsuatsu_shindan.html'?'ja':'en'),page+': invalid language fallback');
+    }
+    const articles=['The_pros_and_cons_of_quick_and_dirty_programming','Padow_family_story','Reason_why_I_came_to_Japan','Story_of_how_I_met_my_wife','Method_I_used_to_study_Japanese','Classic_funny_moments_in_programming_channel_on_freenode','Hypothesis_of_4D_time','Compilation_of_multiplication_tricks_for_people_with_bad_memory','Ideas_for_inventions','amigojapan_Usmar_padows_identity_prover','Self_quotes','First_freenode_anime_channel_Tenkaichibudoukai','My_unusual_schooling','Japanese_programming_technical_terms'];
+    for(const article of articles) {
+      await load('index.html?q='+article+'&lang=en#article');
+      const win=frame.contentWindow,doc=win.document;
+      assert(untranslated(win).length===0,article+': translation coverage '+JSON.stringify(untranslated(win)));
+      const content=doc.getElementById('maincol_container').textContent;
+      for(const lang of ['ja','es']) {
+        win.siteI18n.setLanguage(lang);await settle();
+        assert(doc.getElementById('maincol_container').textContent!==content,article+': translated '+lang);
+        assert(new URL(win.location.href).searchParams.get('q')===article && win.location.hash==='#article',article+': route preserved');
+      }
+    }
+  } catch(error) { failures.push(error.stack); }
+  results.textContent=JSON.stringify({checks,failures},null,2);
+  document.title=failures.length?'FAIL':'PASS';
+})();
+</script>

@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8">
+<link rel="stylesheet" href="assets/site-i18n.css">
+<script defer src="assets/i18n/index.js"></script>
+<script defer src="assets/site-i18n.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Usmar A. Padow (amigojapan)’s homepage</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
@@ -115,7 +119,7 @@ function timeDifference(current, previous) {
 }
 
 function time_from_arrival() {
-     return timeDifference(new Date, new Date("01/09/2002"))+" (calculated relitavely from October 2002)"
+     return '<span data-i18n-years></span> (calculated relatively from October 2002)';
 }
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -138,7 +142,10 @@ var self_quotes="";
 var first_tenkaichibudoukai="";
 var schooling_story="";
 var Japanese_tech_terms="";
+var articlesLoaded = false;
 function load() {
+    if (articlesLoaded) return;
+    articlesLoaded = true;
 	main+=' <div class="maincol">'         
 	main+='        	<h2>Introduction</h2>'
 	main+='			<BR>amigojapan is a developer and part time engRish(pun intended) and Spanish teacher, and also technically a youtuber <a href=https://youtube.com/amigojapan>(check out my youtube channel by clicking here)</a> . I have lived '+ time_from_arrival() +' in Kawaguchi, Saitama Prefecture Japan. Born December 8 1977 in Mexico City, dual national: Mexican and American Citizenship.'
@@ -445,9 +452,9 @@ function load() {
 	crypto_ids+='		<BR><BR>Here is a list of crypto-graphical IDs that I may need to use some day to prove that I am who I am.'
 
 	crypto_ids+='		<BR><BR>To determine if I am who I am, you need to run a text that I will provide you through a sha512 hasher like this <a href=http://www.miniwebtool.com/sha512-hash-generator/>online sha512 hash Generator</a> if it matches any of my IDs, that means it is me, ofcourse unless my clear text file has been compromised, let\'s hope that is not he case :). <BR><BR>Notes: mostly I am doing this for fun, but you never know when it may be useful, I recommend everyone does this...<BR>I know the IDs look ugly on my html page, I think this is because HTML does not break up a word with no spaces in it...<BR>Also I can\'t take credit for this, I am imitating a friend who did this...<BR><BR>'
-	crypto_ids+='		<BR>ID0 is fe3633dce83758a9a750b93cb73a761e751d626e9326188c519fdead7dd1f45bd47615560e7fda1aaa75fe96f1cc9a452fd6d2c6128830114c8c581d5e98ffdf'
-	crypto_ids+='		<BR>ID1 is 0eb85db5a851a08d2bfb79b9b89654e5f7e4da0589994cc8b22c174ad8ce081cf6f58d1fd6bca28b51221163ca3fb59b016bbee130e8914fa44a2831f30a15ee'
-	crypto_ids+='		<BR>ID2 is 39173e03ec4d62113f202817f0666a72f6318158f4f6d89b36d9e7572ac91056257665e28e5783dbca2b57872e27c4fd25c3a7a1c78fea16c5f692abe360d1c5'
+	crypto_ids+='		<BR>ID0: <code>fe3633dce83758a9a750b93cb73a761e751d626e9326188c519fdead7dd1f45bd47615560e7fda1aaa75fe96f1cc9a452fd6d2c6128830114c8c581d5e98ffdf</code>'
+	crypto_ids+='		<BR>ID1: <code>0eb85db5a851a08d2bfb79b9b89654e5f7e4da0589994cc8b22c174ad8ce081cf6f58d1fd6bca28b51221163ca3fb59b016bbee130e8914fa44a2831f30a15ee</code>'
+	crypto_ids+='		<BR>ID2: <code>39173e03ec4d62113f202817f0666a72f6318158f4f6d89b36d9e7572ac91056257665e28e5783dbca2b57872e27c4fd25c3a7a1c78fea16c5f692abe360d1c5</code>'
 
 	self_quotes+='<div class="maincol">' 
 	self_quotes+='		<h2>Self quotes</h2>'
