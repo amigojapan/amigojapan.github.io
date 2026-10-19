@@ -122,7 +122,7 @@ window.SiteTranslations = {
     ],
     "(calculated relatively from October 2002) My wife does not like her name, so we call her \"Tomako\". My son is called \"Chihiro Alexander\"": [
       "(calculated relatively from October 2002) My wife does not like her name, so we call her \"Tomako\". My son is called \"Chihiro Alexander\"",
-      "(2002年10月からの計算) 妻の名前は気に入らないので\"トマコ\"と呼んでいます 息子の名前は\"チヒロ・アレキサンダー\"",
+      "(2002年10月からの計算) 妻の名前は気に入らないので「トマコ」と呼んでいます 息子の名前は「チヒロ・アレキサンダー」",
       "(calculada relativamente a partir de octubre de 2002) A mi esposa no le gusta su nombre, así que la llamamos \"Tomako\". Mi hijo se llama \"Chihiro Alexander\""
     ],
     "(calculated relatively from October 2002) in Kawaguchi, Saitama Prefecture Japan. Born December 8 1977 in Mexico City, dual national: Mexican and American Citizenship.": [
@@ -357,7 +357,7 @@ window.SiteTranslations = {
     ],
     "Chihiro": [
       "Chihiro",
-      "Chihiro",
+      "千尋",
       "Chihiro"
     ],
     "Chinese multiplication trick that you can do easily using paper": [
@@ -459,6 +459,11 @@ window.SiteTranslations = {
       "Free blood pressure analyzer(uses data from the Mayo Clinic)",
       "無料な血圧分析器 (マヨクリニックのデータを使用)",
       "Analizador de presión arterial libre (utiliza datos de la Clínica Mayo)"
+    ],
+    "GANDB": [
+      "GANDB",
+      "GANDB",
+      "GANDB"
     ],
     "GED": [
       "GED",
@@ -579,6 +584,11 @@ window.SiteTranslations = {
       "I am not bad at studying either, cause I have achieved besides learning programming, also learning other languages… I just need to be interested in what I study. Also I keep on studying new programming things even now...",
       "プログラミングだけでなく 他の言語も学びました 私が学ぶことに興味を持つ必要があります 今でも新しいプログラミングを 勉強し続けています",
       "Tampoco soy malo en estudiar, porque he logrado además de aprender programación, también aprendiendo otros idiomas... Sólo necesito estar interesado en lo que estudio. También sigo estudiando nuevas cosas de programación incluso ahora..."
+    ],
+    "I am now working at": [
+      "I am now working at",
+      "現在は次の2社で働いています：",
+      "Ahora trabajo en"
     ],
     "I ate that book up. I think I learned hiragana in one day, which makes it hard for me to understand why some people have trouble learning hiragana.": [
       "I ate that book up. I think I learned hiragana in one day, which makes it hard for me to understand why some people have trouble learning hiragana.",
@@ -842,7 +852,7 @@ window.SiteTranslations = {
     ],
     "My father (Robert Frank, July 1940 - July 2013) was a piano tuner and aspiring movie writer. He immigrated to Mexico where he met my mom Gloria, aspiring writer (add links), in the state of Chiapas, my mother's home town is San Christobal de las Casas. My parents eventually settled in Mexico City, where I was born the 8th of December, 1977. I lived in Mexico City until I was 19 years old, then I went to west palm beach to study at New England Institute of Technology at Palm Beach where I earned an AS in computer programming technology and started working there after graduation. Meanwhile I studied Japanese for 5 years. I arrived in Japan for a visit in 2001 and finally ended up living in Japan in 2002. I met my wife at a back-packer's hotel in Kyoto and we soon got married. Our son was born in December 22, 2003. I have lived in Kawaguchi, Saitama prefecture, Japan for": [
       "My father (Robert Frank, July 1940 - July 2013) was a piano tuner and aspiring movie writer. He immigrated to Mexico where he met my mom Gloria, aspiring writer (add links), in the state of Chiapas, my mother's home town is San Christobal de las Casas. My parents eventually settled in Mexico City, where I was born the 8th of December, 1977. I lived in Mexico City until I was 19 years old, then I went to west palm beach to study at New England Institute of Technology at Palm Beach where I earned an AS in computer programming technology and started working there after graduation. Meanwhile I studied Japanese for 5 years. I arrived in Japan for a visit in 2001 and finally ended up living in Japan in 2002. I met my wife at a back-packer's hotel in Kyoto and we soon got married. Our son was born in December 22, 2003. I have lived in Kawaguchi, Saitama prefecture, Japan for",
-      "父 (ロバート・フランク,1940年7月~2013年7月) はピアノのチューナーで 映画作家の志望だった. 彼はメキシコに移住し 母の故郷サン・クリストバル・デ・ラス・カサスのチアパス州で 母の作家グロリアと出会いました 両親 は ようやく メキシコ 城 に 定住 し まし た.私は 1977 年 12 月 8 日 に 出産 し まし た. 19歳になるまで メキシコシティに住んでいました その後 パームビーチのニューイングランドの技術研究所に 留学しました そこでコンピュータープログラミング技術で ASを取得し 卒業後そこで働き始めました その間私は日本語を5年間勉強した. 私は2001年に訪ねて日本に到着し,2002年についに日本に住みました. 京都のバックパッカーホテルで 妻と出会い すぐに結婚しました 2003年12月22日に息子が生まれた. 私は日本のサイタマ県のカワグチに住んでいます",
+      "父 (ロバート・フランク,1940年7月~2013年7月) はピアノのチューナーで 映画作家の志望だった. 彼はメキシコに引っ越し 母の故郷サン・クリストバル・デ・ラス・カサスのチアパス州でグロリアと出会いました 両親 は ようやく メキシコシティー に 定住 し まし た.私は 1977 年 12 月 8 日 に 出産 し まし た. 19歳になるまで メキシコシティに住んでいました その後 パームビーチのニューイングランドの技術専門学校で勉強しました。 そこでコンピュータープログラミング技術で ASを取得し 卒業後そこで働き始めました その間私は日本語を5年間勉強した. 私は2001年に来日し,2002年についに日本に住みました。 京都のバックパッカーホテルで 妻と出会い すぐに結婚しました 2003年12月22日に息子が生まれた. 私は日本の埼玉県の川口に住んでいます",
       "Mi padre (Robert Frank, julio 1940 - julio 2013) era un afinador de piano y aspirante escritor de cine. Inmigraba a México donde conoció a mi madre Gloria, aspirante escritor (adivinados enlaces), en el estado de Chiapas, la ciudad natal de mi madre es San Christobal de las Casas. Mis padres finalmente se establecieron en la Ciudad de México, donde nací el 8 de diciembre de 1977. Viví en Ciudad de México hasta que tenía 19 años, luego fui a la playa de palma oeste para estudiar en el New England Institute of Technology en Palm Beach donde me gané una AS en tecnología de programación informática y empecé a trabajar allí después de la graduación. Mientras tanto, estudié japonés durante 5 años. Llegué a Japón para una visita en 2001 y finalmente terminé viviendo en Japón en 2002. Conocí a mi esposa en el hotel de un mochilero en Kyoto y pronto nos casamos. Nuestro hijo nació el 22 de diciembre de 2003. He vivido en Kawaguchi, prefectura de Saitama, Japón por"
     ],
     "My grandparent’s hobby was playing bridge,": [
@@ -1177,7 +1187,7 @@ window.SiteTranslations = {
     ],
     "Tomako": [
       "Tomako",
-      "Tomako",
+      "トマコ",
       "Tomako"
     ],
     "True statements about the past are evidence that the past still exists": [
@@ -1410,6 +1420,11 @@ window.SiteTranslations = {
       "ブロックプログラミングからテキストプログラミングへの移行のための私の解決策の一部です)",
       "un entorno para que los programadores novatos aprendan la programación (parte de mi solución para pasar de la programación de bloques a la programación de texto)"
     ],
+    "and": [
+      "and",
+      "そして",
+      "y"
+    ],
     "and he insisted it must be easy to program, finally saying he was going to use LibGDX which I told him was not as easy as unreal or Unity3d.": [
       "and he insisted it must be easy to program, finally saying he was going to use LibGDX which I told him was not as easy as unreal or Unity3d.",
       "そして彼はプログラミングが簡単だと主張し 最終的にはLibGDXを使おうとしていると言いましたが リアルやUnity3dほど簡単ではありませんでした",
@@ -1532,7 +1547,7 @@ window.SiteTranslations = {
     ],
     "is a family of international Ashkenazi Jewish immigrants that come from Lithuania. We escaped from the tzar who was oppressing the Jews.(The fiddler on the roof is pretty much the story of the Padow family) Back in Lithuania the Padow family name used to be called Ezra. Which became Ezrahovich which apparently for some reason to do with Padua Italy the name was changed to Padovich. When my great grandparents arrived at Elis island. The authorities did not understand their last name and changed it to Padow. My grand parents Alexander (born 1911 died at age 90) and Lilian (lived 97 years) were born in the United States in New York's lower east side and eventually moved to Brooklyn where my father Robert Padow was born. They finally went to live in West Palm Beach FL. My grandfather was a chemist and my grandmother an English teacher.": [
       "is a family of international Ashkenazi Jewish immigrants that come from Lithuania. We escaped from the tzar who was oppressing the Jews.(The fiddler on the roof is pretty much the story of the Padow family) Back in Lithuania the Padow family name used to be called Ezra. Which became Ezrahovich which apparently for some reason to do with Padua Italy the name was changed to Padovich. When my great grandparents arrived at Elis island. The authorities did not understand their last name and changed it to Padow. My grand parents Alexander (born 1911 died at age 90) and Lilian (lived 97 years) were born in the United States in New York's lower east side and eventually moved to Brooklyn where my father Robert Padow was born. They finally went to live in West Palm Beach FL. My grandfather was a chemist and my grandmother an English teacher.",
-      "リトアニア出身の国際アシュケナジ系ユダヤ人移民の一族です ユダヤ人を圧迫していた皇帝から逃れた. 屋根のバイオリンはパドウ家の物語です) リトアニアではパドウ族はエズラと呼ばれていた. エズラホビッチになったが パドゥア・イタリアと関係があるため 名前はパドヴィッチに変更されました 祖父母がエリス島に来た時 当局は彼らの姓を理解できず,パドウに変更した. 祖父母 アレクサンダー (1911年生まれ,90歳で亡くなりました) と リリアン (97歳) は,ニューヨークの下部東部の米国で生まれ,最終的に私の父 ロバート・パドウが生まれたブルックリンに移住しました. 最終的にウェスト・パームビーチに引っ越しました 私の祖父は化学家であり,私の祖母は英語教師でした.",
+      "リトアニア出身の国際アシュケナジ系ユダヤ人移民の一族です ユダヤ人を圧迫していたTzarから逃れた. 屋根のバイオリンはパドウ家の物語とそっくりです) リトアニアではパドウ族はエズラと呼ばれていた. エズラホビッチになったが パドゥア・イタリアと関係があるため 名前はパドヴィッチに変更されました ひおじいちゃん達がエリス島に来た時 当局は彼らの姓を理解できず,パドウに変更した. おじいちゃん アレクサンダー (1911年生まれ,90歳で亡くなりました) と リリアン (97歳) は,ニューヨークの下部東部の米国で生まれ,最終的に私の父 ロバート・パドウが生まれたブルックリンに引っ越しました。 最終的にウェスト・パームビーチに引っ越しました 私の祖父は化科学者であり,私の祖母は英語教師でした。",
       "es una familia de inmigrantes judíos ashkenazis internacionales que provienen de Lituania. Nos escapamos del zar que estaba oprimiendo a los judíos.(El fiddler en el techo es casi la historia de la familia Padow) En Lituania el nombre de la familia Padow solía llamarse Esdras. Que se convirtió en Ezrahovich que aparentemente por alguna razón para hacer con Padua Italia el nombre fue cambiado a Padovich. Cuando mis grandes abuelos llegaron a la isla Elis. Las autoridades no entendían su apellido y lo cambiaron a Padow. Mis abuelos Alexander (nacido 1911 murió a los 90 años) y Lilian (vivió 97 años) nacieron en los Estados Unidos en el lado oriental inferior de Nueva York y eventualmente se trasladó a Brooklyn donde nació mi padre Robert Padow. Finalmente fueron a vivir en West Palm Beach FL. Mi abuelo era químico y mi abuela profesora de inglés."
     ],
     "its not a complex image": [
